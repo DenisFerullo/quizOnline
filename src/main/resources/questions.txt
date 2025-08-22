@@ -1,0 +1,63 @@
+1.
+Domanda: Presentazione (Chi sei, quanti anni hai, cosa hai studiato, come hai conosciuto Generation e perché ti sei appassionato alla materia)
+Risposta Breve: Sono [nome], ho [età] anni, ho studiato [percorso di studi], ho conosciuto Generation tramite [evento/piattaforma] e mi appassiona la programmazione perché mi permette di creare soluzioni concrete e stimolanti.
+Risposta Completa: Mi chiamo [nome], ho [età] anni e ho studiato [percorso di studi]. Ho scoperto Generation tramite [evento/piattaforma] e mi sono appassionato alla programmazione perché mi affascina trasformare idee in soluzioni funzionanti, risolvere problemi logici e continuare a imparare nuove tecnologie.
+Suggerimento: Mantieni la risposta concisa ma personale, evidenziando motivazione e curiosità.
+
+2.
+Domanda: Cos’è un algoritmo?
+Risposta Breve: È una sequenza di passi ben definiti per risolvere un problema.
+Risposta Completa: Un algoritmo è un insieme ordinato di istruzioni o passi logici che descrivono come risolvere un problema o eseguire un compito. Deve essere chiaro, finito e deterministico.
+Suggerimento: Usa esempi semplici, come una ricetta o procedura per fare il caffè.
+
+3.
+Domanda: Cos’è un linguaggio di programmazione?
+Risposta Breve: È un linguaggio formale per scrivere istruzioni comprensibili dal computer.
+Risposta Completa: Un linguaggio di programmazione è un sistema di sintassi e regole che permette agli sviluppatori di comunicare con il computer, scrivere programmi, manipolare dati e automatizzare compiti.
+Suggerimento: Menziona differenze tra linguaggi compilati e interpretati se richiesto.
+
+4.
+Domanda: Perché proprio Java? Quali sono i suoi punti di forza?
+Risposta Breve: Portabilità (JVM), OOP, Garbage Collector, forte tipizzazione e versatilità.
+Risposta Completa: Java è portabile grazie alla JVM, supporta la programmazione orientata agli oggetti, gestisce automaticamente la memoria con il Garbage Collector, è fortemente tipizzato e adatto a diversi tipi di applicazioni, dal web al mobile.
+Suggerimento: Puoi menzionare applicazioni reali in cui Java è utilizzato.
+
+5.
+Domanda: Java è compilato, interpretato o come?
+Risposta Breve: È ibrido: compilato in bytecode e interpretato/eseguito dalla JVM.
+Risposta Completa: Il codice Java viene compilato in bytecode dalla javac, che non è codice macchina nativo. Questo bytecode viene poi eseguito dalla JVM, che interpreta o JIT-compila il bytecode in tempo reale.
+Suggerimento: Spiega perché questa architettura rende Java portabile.
+
+6.
+Domanda: Differenza tra variabile e costante
+Risposta Breve: La variabile può cambiare valore; la costante no.
+Risposta Completa: Una variabile è uno spazio di memoria il cui contenuto può cambiare durante l’esecuzione del programma. Una costante ha un valore fisso definito al momento della dichiarazione e non può essere modificata.
+Suggerimento: Mostra un esempio con int x = 5; vs final int MAX = 10;.
+
+7.
+Domanda: Come si definisce una costante in Java?
+Risposta Breve: Usando la parola chiave final.
+Risposta Completa: Una costante in Java si definisce con final, che blocca il valore di variabili, parametri o metodi. Può essere applicata anche a classi e metodi per renderli non modificabili o non estendibili.
+Suggerimento: Ricorda che le costanti sono spesso scritte in MAIUSCOLO.
+
+8.
+Domanda: Perché lavorare secondo un approccio OOP? Quali sono i punti di forza?
+Risposta Breve: Favorisce riuso e modularità grazie a incapsulamento, ereditarietà e polimorfismo.
+Risposta Completa: L’approccio orientato agli oggetti permette di organizzare il codice in classi e oggetti, promuovendo riuso, manutenibilità e modularità. Incapsulamento protegge i dati, ereditarietà favorisce il riuso del codice e polimorfismo consente comportamenti diversi tramite la stessa interfaccia.
+Suggerimento: Usa esempi concreti per incapsulamento o polimorfismo.
+
+9.
+Domanda: Cos’è un costruttore? Quanti costruttori possono esserci?
+Risposta Breve: È un metodo speciale per inizializzare oggetti; può esserci più di uno (overloading).
+Risposta Completa: Il costruttore è un metodo speciale che viene chiamato quando si crea un oggetto, inizializzando i suoi campi. Una classe può avere più costruttori con parametri diversi (overloading).
+Suggerimento: Mostra un esempio semplice con più costruttori.
+
+10.
+Domanda: Quanti modificatori di accesso conosci e a cosa servono?
+Risposta Breve: private, default (package), protected, public. Determinano la visibilità di classi, metodi e variabili.
+Risposta Completa: I modificatori di accesso controllano dove possono essere visti o usati membri della classe: 
+- private → solo nella classe stessa
+- default → solo nel package
+- protected → nel package e sottoclassi
+- public → ovunque
+Suggerimento: Mostra esempi pratici di quando usare ciascun modificatore.

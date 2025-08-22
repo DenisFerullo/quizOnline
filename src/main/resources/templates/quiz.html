@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Quiz Online</title>
+<link rel="stylesheet" th:href="@{/quiz.css}">
+<link rel="stylesheet" th:href="@{/buttons.css}">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<style>
+.card {
+	margin: 20px auto;
+	max-width: 800px;
+}
+
+.hint-btn {
+	margin-right: 10px;
+}
+
+.answer-area {
+	background: #f8f9fa;
+	padding: 15px;
+	margin-top: 10px;
+	border-radius: 5px;
+}
+
+.nav-btn {
+	margin: 5px;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="card">
+			<div
+				class="card-header d-flex justify-content-between align-items-center">
+				<span th:text="'Domanda ' + ${question.id} + '/' + ${total}"></span>
+				<a th:href="@{/quiz/hint(index=${index})}"
+					class="btn btn-warning btn-sm hint-btn">Suggerimento</a>
+			</div>
+			<div class="card-body">
+				<h5 class="card-title" th:text="${question.question}">Domanda
+					qui</h5>
+
+				<div class="answer-area" th:if="${showHint}">
+					<p>
+						<strong>Suggerimento:</strong> <span th:text="${question.hint}">Suggerimento
+							qui</span>
+					</p>
+				</div>
+
+				<div class="answer-area" th:if="${showAnswer}">
+					<p>
+						<strong>Risposta breve:</strong> <span
+							th:text="${question.shortAnswer}">Risposta breve qui</span>
+					</p>
+					<p>
+						<strong>Risposta completa:</strong> <span
+							th:text="${question.fullAnswer}">Risposta completa qui</span>
+					</p>
+				</div>
+			</div>
+			<div class="card-footer d-flex justify-content-between">
+				<a th:href="@{/quiz/prev(index=${index})}"
+					class="btn btn-secondary nav-btn" th:if="${index > 0}">Domanda
+					precedente</a> <a th:href="@{/quiz/answer(index=${index})}"
+					class="btn btn-primary nav-btn">Mostra soluzione</a> <a
+					th:href="@{/quiz/next(index=${index})}"
+					class="btn btn-success nav-btn" th:if="${index < total - 1}">Prossima
+					domanda</a>
+			</div>
+		</div>
+	</div>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
