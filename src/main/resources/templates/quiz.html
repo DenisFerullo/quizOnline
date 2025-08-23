@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quiz Online</title>
 <link rel="stylesheet" th:href="@{/quiz.css}">
 <link rel="stylesheet" th:href="@{/buttons.css}">
@@ -12,72 +13,68 @@
 
 <body>
 	<div class="container">
-	
-		<div class="card">
-			<div class="card-header">
-				<span th:text="'Domanda ' + ${quizIndex} + '/' + ${total}"></span>
-				
-				
-<!-- 				<a th:href="@{/quiz/hint}" class="btn btn-warning btn-sm hint-btn"> -->
-<!-- 					Suggerimento -->
-<!-- 				</a> -->
-				
-			</div>
-			<div class="card-body">
-				<h5 class="card-title" th:text="'[' + ${question.id}  + '] ' + ${question.question}">Domanda qui</h5>
+		<div class="inner-container">
+			<div class="card">
+				<div class="card-header">
+					<span th:text="'Domanda ' + ${quizIndex} + '/' + ${total}"></span>
 
-				<div class="answer-area" th:if="${showHint}">
-					<p>
-						<strong>Suggerimento:</strong> 
-						<span th:text="${question.hint}">
-							Suggerimento qui
-						</span>
-					</p>
+
+					<form th:action="@{/quiz/hint}" method="get">
+						<input type="hidden" name="quizIndex" th:value="${quizIndex}" />
+						<button class="hint" type="submit">Suggerimento</button>
+					</form>
+
+				</div>
+				<div class="card-body">
+					<h5 class="card-title"
+						th:text="'[' + ${question.id}  + '] ' + ${question.question}">Domanda
+						qui</h5>
+
+					<div class="answer-area" th:if="${showHint}">
+						<p>
+							<strong>Suggerimento:</strong> <span th:text="${question.hint}">
+								Suggerimento qui </span>
+						</p>
+					</div>
+
+					<div class="answer-area" th:if="${showAnswer}">
+						<p>
+							<strong>Risposta breve:</strong> <span
+								th:text="${question.shortAnswer}"> Risposta breve qui </span>
+						</p>
+						<p>
+							<strong>Risposta completa:</strong> <span
+								th:text="${question.fullAnswer}"> Risposta completa qui </span>
+						</p>
+					</div>
 				</div>
 
-				<div class="answer-area" th:if="${showAnswer}">
-					<p>
-						<strong>Risposta breve:</strong> 
-						<span th:text="${question.shortAnswer}">
-							Risposta breve qui
-						</span>
-					</p>
-					<p>
-						<strong>Risposta completa:</strong> 
-						<span th:text="${question.fullAnswer}">
-							Risposta completa qui
-						</span>
-					</p>
-				</div>
 			</div>
-			
+
 			<!--  AREA DEI BOTTONI CON AZIONI ------------------------------------------------------------------------------ -->
-			<div class="card-footer">
-				
-				<form th:action="@{/quiz/prev}" method = "get" th:if="${quizIndex > 0}">
+			<div class="button-area">
+
+				<form th:action="@{/quiz/prev}" method="get"
+					th:if="${quizIndex > 0}">
 					<input type="hidden" name="quizIndex" th:value="${quizIndex}" />
-					<button>
-						Domanda precedente
-					</button>
+					<button class="prec" type="submit">Domanda precedente</button>
 				</form>
-				
-<!-- 				<form th:action="@{/quiz/answer}" method = "get" th:if="${index > 0}"> -->
-<!-- 					<button> -->
-<!-- 						Mostra soluzione -->
-<!-- 					</button> -->
-<!-- 				</form> -->
-				
-				<form th:action="@{/quiz/next}" method = "get" th:if="${quizIndex <= total} ">
-				<input type="hidden" name="quizIndex" th:value="${quizIndex}" />
-					<button>
-						Prossima domanda
-					</button>
+
+				<form th:action="@{/quiz/answer}" method="get">
+					<input type="hidden" name="quizIndex" th:value="${quizIndex}" />
+					<button class="answer" type="submit">Mostra soluzione</button>
 				</form>
-				
+
+				<form th:action="@{/quiz/next}" method="get"
+					th:if="${quizIndex <= total} ">
+					<input type="hidden" name="quizIndex" th:value="${quizIndex}" />
+					<button class="next" type="submit">Prossima domanda</button>
+				</form>
+
+
 			</div>
-			
-			
 		</div>
+
 	</div>
 </body>
 </html>

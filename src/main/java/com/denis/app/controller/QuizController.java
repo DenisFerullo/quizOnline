@@ -6,11 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 @Controller
@@ -24,12 +22,16 @@ public class QuizController {
 	private final ArrayList<Question> history = new ArrayList();
 
 	@GetMapping("/quiz")
-	public String showQuestion(@RequestParam(value="quizIndex", required=false, defaultValue="0") int quizIndex, Model model) {
+	public String showQuestion(@RequestParam(value="quizIndex", required=false, defaultValue="0") int quizIndex,
+								@RequestParam(value="showHint", required=false, defaultValue="false") boolean hint,
+								@RequestParam(value="showAnswer", required=false, defaultValue="false") boolean answer,
+								Model model) {
 
 		// Configurazione iniziale per la pagina ----------------------------------------------------- //
 		Question currentQuestion;
 		int questionIndex;
 		ArrayList<Question> questions = questionRepository.findAll();
+		
 		// valutiamo se l'esito è andato a buon fine, altrimenti mandiamo un messaggio di errore.
 		if (questions.isEmpty()) {
 	        model.addAttribute("error", "Nessuna domanda caricata");
@@ -61,11 +63,10 @@ public class QuizController {
 		model.addAttribute("quizIndex", quizIndex);
 		model.addAttribute("total" , questions.size());
 		
-		// Altri valori da passare al model
-		boolean hint = true;
+		// mostra suggerimento se richiesto
 		model.addAttribute("showHint", hint);
 		
-		boolean answer = true;
+		// mostra la risposta se richiesto
 		model.addAttribute("showAnswer", answer);
 		return "quiz";
 	}
@@ -93,17 +94,17 @@ public class QuizController {
 	}
 	
 	
-	
-	
 
 	@GetMapping("/quiz/hint")
-	public String showHint(@RequestParam int index) {
-		return "redirect:/quiz?showHint=true";
+	public String showHint(@RequestParam("quizIndex") int quizIndex) {
+		return "redirect:/quiz?quizIndex=" + quizIndex + "&showHint=true";
 	}
 
+	
+	
 	@GetMapping("/quiz/answer")
-	public String showAnswer(@RequestParam int index) {
-		return "redirect:/quiz?showHint=true&showAnswer=true";
+	public String showAnswer(@RequestParam("quizIndex") int quizIndex) {
+		return "redirect:/quiz?quizIndex=" + quizIndex + "&showHint=true&showAnswer=true";
 	}
 
 	@GetMapping("/quiz/reset")

@@ -5,11 +5,14 @@
     --color-secondary: #764ba2; /* viola secondario */
     --color-accent: #f6ad55;    /* arancione di contrasto */
     --color-light: #f7fafc;     /* bianco/grigio chiaro */
+    --color-dark: #2d2d2d;      /* testo scuro */
+    --card-bg: #ffffff;          /* sfondo card */
+    --card-shadow: rgba(0,0,0,0.15);
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to right, #667eea, #764ba2);
+    background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
     color: var(--color-light);
     margin: 0;
     padding: 0;
@@ -21,22 +24,37 @@ body {
 
 .container {
     display: flex;
+}
+
+.inner-container {
+    display: block;
     justify-content: center;
     align-items: center;
     min-height: 90vh;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 /* Card */
 .card {
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 8px 20px var(--card-shadow);
     width: 100%;
     max-width: 800px;
-    padding: 20px;
+    padding: 25px;
     box-sizing: border-box;
-    color: #333;
-    animation: fadeIn 0.3s ease-in-out;
+    color: var(--color-dark);
+    animation: fadeIn 0.4s ease-in-out;
+    transition: transform 0.5s, box-shadow 0.5s, padding 0.5s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+    padding : 40px;
+     
 }
 
 /* Card header */
@@ -45,37 +63,83 @@ body {
     justify-content: space-between;
     align-items: center;
     font-weight: bold;
-    font-size: 1.1em;
-    margin-bottom: 15px;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: var(--color-dark);
+    flex-wrap: wrap;
 }
 
 /* Domanda */
 .card-title {
-    font-size: 1.3em;
+    font-size: 1.4em;
     font-weight: 600;
     margin-bottom: 20px;
 }
 
 /* Aree suggerimento e risposta */
 .answer-area {
-    background-color: #f8f9fa;
-    border-left: 4px solid #ffc107;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    color: #212529;
+    background-color: #f1f3f6;
+    border-left: 5px solid var(--color-accent);
+    padding: 18px;
+    margin-bottom: 18px;
+    border-radius: 8px;
+    color: #2c2c2c;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
+/* Animazioni */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Card footer */
-.card-footer {
+
+
+.button-area {
+    width: 100%;
+    max-width: 800px;
+    margin-top: -10px; /* card leggermente sopra l'area bottoni */
+    background-color: #ffffff;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 10px;
+    gap: 12px;
+    box-sizing: border-box;
+    z-index: 1;
 }
+
+
+/* Media queries per smartphone */
+@media (max-width: 600px) {
+    .card {
+        padding: 18px;
+    }
+
+    .card-title {
+        font-size: 1.2em;
+    }
+
+    .card-header {
+        font-size: 1em;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .button-area {
+        flex-direction: column;
+        gap: 10px;
+        padding: 12px 15px;
+        gap: 10px;
+    }
+
+    .answer-area {
+        padding: 15px;
+    }
+}
+
+
+
