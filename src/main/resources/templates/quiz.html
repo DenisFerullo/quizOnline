@@ -6,6 +6,7 @@
 <title>Quiz Online</title>
 <link rel="stylesheet" th:href="@{/quiz.css}">
 <link rel="stylesheet" th:href="@{/buttons.css}">
+<link rel="stylesheet" th:href="@{/autovalutazione.css}">
 
 </head>
 
@@ -13,68 +14,121 @@
 
 <body>
 	<div class="container">
+
 		<div class="inner-container">
+
 			<div class="card">
+
 				<div class="card-header">
 					<span th:text="'Domanda ' + ${quizIndex} + '/' + ${total}"></span>
 
-
-					<form th:action="@{/quiz/hint}" method="get">
-						<input type="hidden" name="quizIndex" th:value="${quizIndex}" />
-						<button class="hint" type="submit">Suggerimento</button>
+					<form th:action="@{/feedback}">
+						<button class = "end">Concludi il quiz</button>
 					</form>
-
 				</div>
+
+
+				<h5 class="card-title" th:text="'[' + ${question.id}  + '] ' + ${question.question}">Domanda qui</h5>
+							
 				<div class="card-body">
-					<h5 class="card-title"
-						th:text="'[' + ${question.id}  + '] ' + ${question.question}">Domanda
-						qui</h5>
+						
+						<div class="answer-hint-area">
+							<!-- Suggerimento nascoto di default -->
+							<div class="answer-area" id="hintArea">
+								<p>
+									<strong>Suggerimento:</strong> <span th:text="${question.hint}">
+										Suggerimento qui </span>
+								</p>
+							</div>
+	
+							<!-- Risposta nascosta di default -->
+							<div class="answer-area" id="answerArea">
+								<p>
+									<strong>Risposta breve:</strong> <span
+										th:text="${question.shortAnswer}"> Risposta breve qui </span>
+								</p>
+								<p>
+									<strong>Risposta completa:</strong> <span
+										th:text="${question.fullAnswer}"> Risposta completa qui
+									</span>
+								</p>
+							</div>
+						</div>
 
-					<div class="answer-area" th:if="${showHint}">
-						<p>
-							<strong>Suggerimento:</strong> <span th:text="${question.hint}">
-								Suggerimento qui </span>
-						</p>
-					</div>
 
-					<div class="answer-area" th:if="${showAnswer}">
-						<p>
-							<strong>Risposta breve:</strong> <span
-								th:text="${question.shortAnswer}"> Risposta breve qui </span>
-						</p>
-						<p>
-							<strong>Risposta completa:</strong> <span
-								th:text="${question.fullAnswer}"> Risposta completa qui </span>
-						</p>
+					<div class="evaluation-area">
+						<form th:action="@{/quiz/evaluate}" method="post"
+							class="rating-form">
+							<input type="hidden" name="quizIndex" th:value="${quizIndex}" />
+
+							<div class="rating-buttons">
+								<input type="radio" id="rate1" name="rating" value="1" required
+									onchange="this.form.submit()"> <label for="rate1">1</label>
+
+								<input type="radio" id="rate2" name="rating" value="2"
+									onchange="this.form.submit()"> <label for="rate2">2</label>
+
+								<input type="radio" id="rate3" name="rating" value="3"
+									onchange="this.form.submit()"> <label for="rate3">3</label>
+
+								<input type="radio" id="rate4" name="rating" value="4"
+									onchange="this.form.submit()"> <label for="rate4">4</label>
+
+								<input type="radio" id="rate5" name="rating" value="5"
+									onchange="this.form.submit()"> <label for="rate5">5</label>
+							</div>
+						</form>
 					</div>
 				</div>
-
 			</div>
 
 			<!--  AREA DEI BOTTONI CON AZIONI ------------------------------------------------------------------------------ -->
 			<div class="button-area">
 
-				<form th:action="@{/quiz/prev}" method="get"
-					th:if="${quizIndex > 0}">
-					<input type="hidden" name="quizIndex" th:value="${quizIndex}" />
-					<button class="prec" type="submit">Domanda precedente</button>
-				</form>
+				
 
-				<form th:action="@{/quiz/answer}" method="get">
-					<input type="hidden" name="quizIndex" th:value="${quizIndex}" />
-					<button class="answer" type="submit">Mostra soluzione</button>
-				</form>
+				<div class="answer-hint-btn">
+					<button type="button" class="answer-btn"
+						onclick="toggleArea('answerArea')">Answer</button>
 
-				<form th:action="@{/quiz/next}" method="get"
-					th:if="${quizIndex <= total} ">
-					<input type="hidden" name="quizIndex" th:value="${quizIndex}" />
-					<button class="next" type="submit">Prossima domanda</button>
-				</form>
-
-
+					<button type="button" class="hint-btn"
+						onclick="toggleArea('hintArea')">Hint</button>
+				</div>
+				
+				<div class = "prec-next-question">
+					
+					<form th:action="@{/quiz/prev}" method="get" th:if="${quizIndex > 0}">
+						<input type="hidden" name="quizIndex" th:value="${quizIndex}" />
+						<button class="prec" type="submit">Domanda precedente</button>
+					</form>
+				
+					<form th:action="@{/quiz/next}" method="get"
+						th:if="${quizIndex <= total}">
+						<input type="hidden" name="quizIndex" th:value="${quizIndex}" />
+						<button class="next" type="submit">Skip domanda</button>
+					</form>
+				</div>
 			</div>
+
+			<br> <br>
+
+
 		</div>
 
+
+
+
 	</div>
+
+
+
+
+	<script>
+		function toggleArea(areaId) {
+			const area = document.getElementById(areaId);
+			area.classList.toggle('show');
+		}
+	</script>
+
 </body>
 </html>

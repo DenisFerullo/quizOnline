@@ -61,3 +61,567 @@ Risposta Completa: I modificatori di accesso controllano dove possono essere vis
 - protected → nel package e sottoclassi
 - public → ovunque
 Suggerimento: Mostra esempi pratici di quando usare ciascun modificatore.
+
+11.
+Domanda: I costruttori si ereditano?
+Risposta Breve: No.
+Risposta Completa: I costruttori non si ereditano. Ogni classe deve definire i propri costruttori.
+Suggerimento: Ricorda che i costruttori servono a inizializzare i campi di una classe e non vengono trasmessi alle sottoclassi.
+
+12.
+Domanda: Cosa fa la parola chiave super?
+Risposta Breve: Richiama il costruttore o un metodo della superclasse.
+Risposta Completa: La parola chiave super permette di accedere a metodi, campi o costruttori della classe genitore, evitando ambiguità con quelli della sottoclasse.
+Suggerimento: Usala per richiamare il costruttore della superclasse o un metodo sovrascritto.
+
+13.
+Domanda: Cosa Override - Overload? Esempi di utilizzo?
+Risposta Breve: Override: ridefinizione metodo; Overload: stesso nome, parametri diversi.
+Risposta Completa: Override significa ridefinire un metodo ereditato per cambiare il comportamento (es. toString() di Impiegato vs Manager). Overload significa definire più metodi con lo stesso nome ma parametri diversi (es. somma con 2 o 3 operandi, costruttore senza argomenti vs completo).
+Suggerimento: Mostra esempi pratici di metodi sovraccaricati e ridefiniti.
+
+14.
+Domanda: Cos’è il binding? Esempi di utilizzo
+Risposta Breve: Collegamento tra istanza e metodo da eseguire.
+Risposta Completa: Il binding determina quale versione del metodo chiamare a runtime in base all’oggetto effettivo. Es. System.out.println(manager) richiama il metodo toString() di Manager se ridefinito, altrimenti quello di Impiegato.
+Suggerimento: Evidenzia la differenza tra binding statico e dinamico.
+
+15.
+Domanda: Qual è la differenza tra un tipo primitivo, una classe e un oggetto?
+Risposta Breve: Primativo: tipo base; Classe: modello; Oggetto: istanza.
+Risposta Completa: Un tipo primitivo è un tipo semplice previsto dal linguaggio. Una classe è un modello o blueprint per creare oggetti. Un oggetto è una singola istanza della classe, con valori concreti dei campi.
+Suggerimento: Usa esempi come videogame: la classe è il tipo di gioco, l’oggetto è il gioco concreto.
+
+16.
+Domanda: Quanti tipi di primitivi conosci? In cosa differiscono?
+Risposta Breve: Vari tipi come int, double, boolean; differiscono per range e dimensione.
+Risposta Completa: I tipi primitivi in Java sono byte, short, int, long, float, double, char, boolean. Differiscono per la quantità di memoria occupata e i valori rappresentabili.
+Suggerimento: Evidenzia range e dimensione di ciascun tipo.
+
+17.
+Domanda: Metodi della classe Object
+Risposta Breve: equals, toString, hashCode, clone, finalize, getClass.
+Risposta Completa: La classe Object fornisce metodi di base comuni a tutti gli oggetti: equals() per confrontare, toString() per rappresentazione testuale, hashCode() per hash, clone() per copia, finalize() prima della GC, getClass() per info runtime.
+Suggerimento: Mostra esempi pratici di override di toString() ed equals().
+
+18.
+Domanda: Una stringa è un tipo primitivo?
+Risposta Breve: No.
+Risposta Completa: Una stringa è un oggetto, internamente rappresentato come un array di caratteri.
+Suggerimento: Ricorda che String è immutabile in Java.
+
+19.
+Domanda: Differenza tra if-if e if else-if
+Risposta Breve: if-if valuta separatamente; if-else if è mutuamente esclusivo.
+Risposta Completa: Con if-if, tutti i blocchi vengono valutati indipendentemente. Con if-else if, solo il primo blocco vero viene eseguito.
+Suggerimento: Mostra esempio con più condizioni per chiarire la differenza.
+
+20.
+Domanda: Cos’è lo switch? Differenza con if else if? A cosa serve break? Default obbligatorio?
+Risposta Breve: Costrutto decisionale; solo uguaglianze; break interrompe il case; default non obbligatorio.
+Risposta Completa: Lo switch valuta un’espressione e seleziona il case corrispondente. Differisce dall’if-else if perché gestisce solo uguaglianze e non intervalli. break evita di eseguire i case successivi. default è opzionale.
+Suggerimento: Mostra esempio con switch su numeri o stringhe.
+
+21.
+Domanda: Differenza tra break e return
+Risposta Breve: break interrompe ciclo o switch; return esce da un metodo.
+Risposta Completa: break termina l’esecuzione del ciclo o del case in uno switch. return termina l’esecuzione di un metodo e opzionalmente restituisce un valore.
+Suggerimento: Usa esempi di ciclo e metodo.
+
+22.
+Domanda: Quanti tipi di cicli conosci?
+Risposta Breve: for, while, do-while, foreach.
+Risposta Completa: I principali cicli in Java sono: for, while, do-while e il for-each (enhanced for) utilizzato su collezioni.
+Suggerimento: Mostra esempio pratico per ciascun tipo.
+
+23.
+Domanda: In che contesto è meglio utilizzare ciascun ciclo?
+Risposta Breve: foreach per strutture dati; while/do-while per condizioni variabili.
+Risposta Completa: foreach è utile per iterazioni su array o collezioni con incremento unitario. while è indicato per condizioni non note a priori, do-while per almeno un’esecuzione (es. menù utente, ResultSet).
+Suggerimento: Mostra esempi pratici per ciascun ciclo.
+
+24.
+Domanda: Differenza tra array e ArrayList
+Risposta Breve: Array statico, ArrayList dinamico.
+Risposta Completa: Array ha dimensione fissa e può contenere tipi primitivi o oggetti. ArrayList è dinamico, basato su interfaccia List, memorizza solo oggetti; per tipi primitivi occorrono wrapper.
+Suggerimento: Mostra esempio di creazione e aggiunta elementi.
+
+25.
+Domanda: A che valore viene inizializzato un array di boolean e un array di char?
+Risposta Breve: false - '\0'.
+Risposta Completa: Un array di boolean è inizializzato a false, un array di char a '\0' (carattere nullo, non visibile).
+Suggerimento: Mostra esempio di stampa default.
+
+26.
+Domanda: Cos’è una LinkedList?
+Risposta Breve: Lista collegata, inserimenti/cancellazioni veloci.
+Risposta Completa: LinkedList memorizza nodi collegati tra loro. Inserimenti e cancellazioni sono più veloci rispetto ad ArrayList, ma l’accesso tramite indice è più lento.
+Suggerimento: Mostra confronto tra ArrayList e LinkedList.
+
+27.
+Domanda: Cos’è un HashSet?
+Risposta Breve: Collezione senza duplicati.
+Risposta Completa: HashSet è una collezione che memorizza oggetti unici, evitando duplicati, non garantisce ordine.
+Suggerimento: Mostra esempio di aggiunta duplicati.
+
+28.
+Domanda: Cosa sono Stack ed Heap?
+Risposta Breve: Stack: primitivi; Heap: oggetti.
+Risposta Completa: Stack contiene variabili locali e primitivi, Heap contiene oggetti e dati dinamici. Il Garbage Collector gestisce la memoria Heap.
+Suggerimento: Mostra esempio di creazione oggetti e variabili locali.
+
+29.
+Domanda: Come confrontare 2 oggetti?
+Risposta Breve: Usare equals().
+Risposta Completa: Per confrontare oggetti, si deve ridefinire il metodo equals(). Altrimenti, il confronto valuta solo riferimenti di memoria.
+Suggerimento: Mostra esempio di override di equals().
+
+30.
+Domanda: Cos’è l’operazione di casting?
+Risposta Breve: Conversione tra tipi.
+Risposta Completa: Il casting converte un valore da un tipo a un altro compatibile, con possibile perdita di informazioni (es. double → int).
+Suggerimento: Mostra esempio di cast esplicito e implicito.
+
+31.
+Domanda: Qual è la differenza con il parsing?
+Risposta Breve: Parsing estrae e converte un dato da una stringa.
+Risposta Completa: Il parsing consiste nell’estrapolare un dato da una stringa e convertirlo in un tipo specifico, ad esempio String → int tramite Integer.parseInt(...). È usato anche in applicazioni web per ottenere parametri di richiesta.
+Suggerimento: Mostra esempio pratico con parametri di richiesta o conversione stringa → numero.
+
+32.
+Domanda: Cosa sono gli Enum e quando li utilizzeresti?
+Risposta Breve: Tipi di dato con valori predefiniti.
+Risposta Completa: Un Enum è un tipo speciale che definisce un insieme limitato di valori possibili (es. Coupé, Berlina, Sportiva). Utile quando una variabile può assumere solo valori specifici.
+Suggerimento: Mostra esempio di Enum per tipologie di veicoli o stati di un ordine.
+
+33.
+Domanda: Cos’è una classe astratta? Quando va utilizzata? Deve avere metodi astratti?
+Risposta Breve: Classe che non può essere istanziata, può contenere metodi concreti e astratti.
+Risposta Completa: Una classe astratta serve come blueprint per altre classi. Non è necessario che abbia metodi astratti, ma può contenerli. Metodi astratti invece non possono essere implementati nella stessa classe astratta e devono essere implementati dalle sottoclassi. Un metodo astratto può esistere solo in una classe astratta.
+Suggerimento: Mostra esempio pratico di classe astratta e sua sottoclasse concreta.
+
+34.
+Domanda: Esempio di metodo astratto
+Risposta Breve: Calcola prezzo() in classe Articolo.
+Risposta Completa: Una classe Articolo può avere un metodo astratto calcolaPrezzo() che ogni sottoclasse implementa diversamente. Utile per gestire categorie di prodotti con calcoli diversi.
+Suggerimento: Evidenzia override nelle sottoclassi.
+
+35.
+Domanda: Cos’è un’interfaccia?
+Risposta Breve: Contratto di metodi senza implementazione.
+Risposta Completa: Un’interfaccia definisce un insieme di metodi che una classe deve implementare, senza fornire il corpo dei metodi. Consente di definire comportamenti comuni a classi diverse.
+Suggerimento: Mostra esempio di interfaccia per oggetti con comportamento comune.
+
+36.
+Domanda: Differenza tra classe astratta e interfaccia
+Risposta Breve: Classe astratta può avere stati e implementazioni, interfaccia solo metodi astratti (prima di Java 8).
+Risposta Completa: Una classe astratta può contenere campi, costruttori e metodi concreti e astratti. Un’interfaccia definisce solo i metodi da implementare (Java 8+ può avere default e static). Una classe può implementare più interfacce, ma estendere una sola classe astratta.
+Suggerimento: Mostra esempio pratico confronto.
+
+37.
+Domanda: Cos’è un’eccezione? Tipi? Vanno tutte gestite?
+Risposta Breve: Evento anomalo a runtime; checked e unchecked; non tutte devono essere gestite.
+Risposta Completa: Un’eccezione è un errore o evento imprevisto durante l’esecuzione. Tipi principali: checked (deve essere gestita o dichiarata), unchecked (runtime, non obbligatoria). Non tutte le eccezioni devono essere gestite, dipende dal tipo.
+Suggerimento: Mostra esempio con IOException e NullPointerException.
+
+38.
+Domanda: Perché le eccezioni vanno rilanciate?
+Risposta Breve: Per informare il chiamante dell’errore.
+Risposta Completa: Le eccezioni vanno rilanciate per permettere al metodo chiamante di gestirle, propagando informazioni sul problema e consentendo azioni correttive.
+Suggerimento: Mostra esempio di throws in firma metodo.
+
+39.
+Domanda: A cosa serve il blocco finally?
+Risposta Breve: Per eseguire codice indipendentemente da eccezioni.
+Risposta Completa: Il blocco finally viene eseguito sempre dopo try/catch, utile per chiudere risorse o liberare memoria.
+Suggerimento: Mostra esempio con chiusura di file o stream.
+
+40.
+Domanda: Cos’è un package?
+Risposta Breve: Spazio di nomi e cartelle.
+Risposta Completa: Un package è uno spazio di nomi logico che raggruppa classi correlate; fisicamente corrisponde a cartelle e sottocartelle.
+Suggerimento: Mostra esempio package com.esempio.app.
+
+41.
+Domanda: Perché organizziamo i nostri progetti in package?
+Risposta Breve: Per modularità, chiarezza e gestione namespace.
+Risposta Completa: I package permettono di raggruppare classi correlate, evitare conflitti di nome, migliorare manutenzione e leggibilità del progetto.
+Suggerimento: Mostra esempio di progetto con package per moduli diversi.
+
+42.
+Domanda: Differenza tra metodo statico e non statico
+Risposta Breve: Statico di classe, non richiede istanza; non statico appartiene all’oggetto.
+Risposta Completa: Un metodo statico può essere richiamato senza creare oggetti, ad esempio Calcolatrice.somma(...). Un metodo non statico richiede un’istanza dell’oggetto e può accedere a campi dell’istanza.
+Suggerimento: Mostra esempio pratico di entrambi.
+
+43.
+Domanda: Perché avete introdotto i database?
+Risposta Breve: Per persistenza dei dati oltre l’esecuzione dell’app.
+Risposta Completa: Senza database, alla chiusura dell’applicazione si perdono oggetti in memoria (ArrayList ecc.). Il DB permette di memorizzare i dati in modo persistente e sicuro.
+Suggerimento: Mostra esempio di salvataggio e recupero dati.
+
+44.
+Domanda: Vantaggi dei database rispetto a file di testo
+Risposta Breve: Strutturazione, gestione concorrente, query, integrità.
+Risposta Completa: I database offrono accesso concorrente, integrità dei dati, possibilità di query avanzate, backup e sicurezza, a differenza di file di testo semplici.
+Suggerimento: Mostra confronto pratico.
+
+45.
+Domanda: Differenza tra database e DBMS
+Risposta Breve: Database = dati; DBMS = software che li gestisce.
+Risposta Completa: Un database è un insieme organizzato di dati. Il DBMS gestisce l’accesso, sincronizzazione, sicurezza, vincoli, backup, ruoli e permessi.
+Suggerimento: Mostra esempio DB MySQL e sua gestione con DBMS.
+
+46.
+Domanda: Qual è l’acronimo di DBMS?
+Risposta Breve: Database Management System.
+Risposta Completa: DBMS significa Database Management System, software per creare, gestire e mantenere database.
+Suggerimento: Ricorda acronimo e significato.
+
+47.
+Domanda: Cos’è SQL? Acronimo?
+Risposta Breve: Linguaggio per database; Structured Query Language.
+Risposta Completa: SQL (Structured Query Language) è il linguaggio standard per interagire con i database: creare, leggere, aggiornare e cancellare dati.
+Suggerimento: Mostra esempio di query semplice.
+
+48.
+Domanda: Cosa sono le CRUD? Acronimo?
+Risposta Breve: Create, Read, Update, Delete.
+Risposta Completa: CRUD definisce le quattro operazioni principali sui dati: Create (inserimento), Read (lettura), Update (aggiornamento), Delete (cancellazione).
+Suggerimento: Mostra esempio con tabella utenti.
+
+49.
+Domanda: Tra CRUD quali sono DML, DQL, DDL?
+Risposta Breve: DML: Create, Update, Delete; DQL: Read; DDL: Create/Alter Table.
+Risposta Completa: DML (Data Manipulation Language) gestisce dati: INSERT, UPDATE, DELETE. DQL (Data Query Language) legge dati: SELECT. DDL (Data Definition Language) definisce struttura: CREATE TABLE, ALTER TABLE.
+Suggerimento: Mostra esempio query SQL per ciascun tipo.
+
+50.
+Domanda: Cos’è una PK?
+Risposta Breve: Chiave primaria, identifica un record univoco.
+Risposta Completa: Una PK (Primary Key) è un campo che identifica univocamente un record in una tabella; per default è UNIQUE e NOT NULL.
+Suggerimento: Mostra esempio di tabella con PK.
+
+51. 
+Domanda: Perché usare una PK?
+Risposta Breve: Per identificare univocamente un record.
+Risposta Completa: Senza una PK non possiamo identificare in modo univoco un record, rendendo difficili operazioni come UPDATE o DELETE. È possibile creare tabelle senza PK, ma non è consigliabile.
+Suggerimento: Mostra esempio di tabella con e senza PK.
+
+52. 
+Domanda: Perché usare l’ID e non il Codice Fiscale o la targa come PK?
+Risposta Breve: ID garantisce unicità; C.F. o targa possono avere duplicati o trasferimenti.
+Risposta Completa: Usare ID come PK evita problemi di omocodia nel Codice Fiscale o duplicazioni/targhe trasferibili, garantendo integrità dei dati.
+Suggerimento: Mostra esempi pratici di conflitti con C.F. o targa.
+
+53. 
+Domanda: Differenza tra PK e UNIQUE
+Risposta Breve: PK non ammette null e identifica record; UNIQUE ammette valori nulli.
+Risposta Completa: La PK identifica un record e non può essere nulla. UNIQUE impone unicità dei valori ma può contenere valori nulli.
+Suggerimento: Mostra esempio di tabella con PK e colonna UNIQUE.
+
+54. 
+Domanda: Cos’è una FK?
+Risposta Breve: Campo che riferisce una PK di un’altra tabella.
+Risposta Completa: Una FK (Foreign Key) contiene solo valori presenti nella PK di un’altra tabella, garantendo integrità referenziale.
+Suggerimento: Mostra esempio di FK tra tabella Ordini e Clienti.
+
+55. 
+Domanda: Cos’è una JOIN?
+Risposta Breve: Operazione per combinare tabelle.
+Risposta Completa: La JOIN permette di combinare dati provenienti da due o più tabelle basandosi su una condizione comune.
+Suggerimento: Mostra esempio con INNER JOIN su tabella Clienti e Ordini.
+
+56. 
+Domanda: Quanti tipi di JOIN conosci?
+Risposta Breve: INNER, LEFT, RIGHT, FULL, CROSS.
+Risposta Completa: Esistono vari tipi di JOIN: INNER (solo record corrispondenti), LEFT/RIGHT (tutti record da una tabella più corrispondenze), FULL (tutti record di entrambe), CROSS (prodotto cartesiano).
+Suggerimento: Mostra esempio pratico per LEFT e INNER.
+
+57. 
+Domanda: Esempi di LEFT e INNER JOIN
+Risposta Breve: INNER: solo record corrispondenti; LEFT: tutti record tabella sinistra.
+Risposta Completa: INNER JOIN seleziona solo i record presenti in entrambe le tabelle. LEFT JOIN seleziona tutti i record della tabella sinistra e i corrispondenti della destra, con NULL se non ci sono.
+Suggerimento: Mostra query SQL reale.
+
+58. 
+Domanda: Differenza tra WHERE ed HAVING
+Risposta Breve: WHERE filtra righe prima dell’aggregazione, HAVING dopo.
+Risposta Completa: WHERE applica filtri sulle righe individuali prima di GROUP BY. HAVING filtra risultati aggregati dopo GROUP BY.
+Suggerimento: Mostra esempio con COUNT e GROUP BY.
+
+59. 
+Domanda: Cosa sono le funzioni di aggregazione?
+Risposta Breve: Funzioni su insiemi di dati, es. COUNT, AVG, SUM.
+Risposta Completa: Le funzioni di aggregazione operano su più righe per restituire un unico valore (es. COUNT per contare record, AVG per media, SUM per somma).
+Suggerimento: Mostra esempio con tabella Ordini.
+
+60. 
+Domanda: Lanciare COUNT(*) vs COUNT(nome campo) cambia qualcosa?
+Risposta Breve: COUNT(*) conta tutte le righe; COUNT(campo) solo non null.
+Risposta Completa: COUNT(*) conta tutte le righe. COUNT(nome_campo) conta solo righe con valori non null in quel campo.
+Suggerimento: Mostra esempio pratico.
+
+61. 
+Domanda: Esempio di relazione One-to-one, One-to-many, Many-to-many
+Risposta Breve: Persona-Documento; Cliente-Ordini; Studenti-Corsi.
+Risposta Completa: One-to-one: Persona e Documento. One-to-many: Cliente e Ordini. Many-to-many: Studenti e Corsi (tramite tabella intermedia).
+Suggerimento: Mostra schema tabelle e chiavi.
+
+62. 
+Domanda: Cos’è una Subquery? Esempi?
+Risposta Breve: Query annidata dentro un’altra query.
+Risposta Completa: Una Subquery estrae dati all’interno di un’altra query, es. salario medio impiegati calcolato internamente e usato nella query esterna per trovare dipendenti con salario superiore.
+Suggerimento: Mostra query SQL completa con SELECT annidato.
+
+63. 
+Domanda: Cos’è la normalizzazione?
+Risposta Breve: Eliminazione di ridondanza e inconsistenza dati.
+Risposta Completa: La normalizzazione organizza i dati in tabelle per ridurre ridondanza, garantire integrità e semplificare manutenzione.
+Suggerimento: Mostra esempio 1NF, 2NF, 3NF.
+
+64. 
+Domanda: 1° forma normale, 2° forma normale, 3° forma normale
+Risposta Breve: 1NF: campi atomici; 2NF: dipendenza totale dalla PK; 3NF: niente dipendenza tra campi non chiave.
+Risposta Completa: 1NF: tutti campi atomici e PK. 2NF: campi dipendono dall’intera PK (quando composta). 3NF: nessun campo non chiave dipendente da altri campi non chiave.
+Suggerimento: Mostra tabella esempio.
+
+65. 
+Domanda: Cos’è JDBC?
+Risposta Breve: API per interfacciarsi con database.
+Risposta Completa: JDBC è un’API Java che consente di connettersi e operare su database relazionali.
+Suggerimento: Mostra esempio di connessione e query.
+
+66. 
+Domanda: A cosa servono queste interfacce? (Connection, Statement, PreparedStatement, ResultSet)
+Risposta Breve: Gestire connessione, inviare query, recuperare risultati.
+Risposta Completa: Connection gestisce connessione al DB. Statement invia query. PreparedStatement invia query precompilate. ResultSet contiene risultati SELECT.
+Suggerimento: Mostra esempio di query completa.
+
+67. 
+Domanda: Cos’è un PreparedStatement? Differenza con Statement?
+Risposta Breve: Query parametrica precompilata, previene SQL injection.
+Risposta Completa: PreparedStatement permette di eseguire query con parametri e precompilate, evitando SQL injection. Statement esegue query dirette.
+Suggerimento: Mostra esempio con parametri.
+
+68. 
+Domanda: Cos’è il ResultSet?
+Risposta Breve: Contiene i risultati di una SELECT.
+Risposta Completa: ResultSet permette di navigare e leggere i risultati di una query SQL SELECT.
+Suggerimento: Mostra esempio con next() e getString().
+
+69. 
+Domanda: Cos’è un DAO? Acronimo? Perché usarlo?
+Risposta Breve: Layer applicativo per persistenza; Data Access Object.
+Risposta Completa: DAO (Data Access Object) è un layer che gestisce accesso e manipolazione dati, separando logica DB dal modello, aumentando robustezza e manutenzione.
+Suggerimento: Mostra esempio di classe DAO per Persona.
+
+70. 
+Domanda: Cos’è JPA?
+Risposta Breve: API per gestire DB ad alto livello.
+Risposta Completa: JPA permette di interagire con DB senza scrivere query SQL a basso livello, ricostruendo oggetti automaticamente tramite mapping, basandosi su JDBC.
+Suggerimento: Mostra esempio con EntityManager e entity.
+
+71. 
+Domanda: Cos’è una transazione?
+Risposta Breve: Operazione o serie di operazioni atomiche su DB.
+Risposta Completa: Una transazione è un’operazione o una serie di operazioni che vengono eseguite in forma atomica sul database. Tutte devono avere successo (commit) o, in caso di errore, l’intera transazione viene annullata (rollback). Esempio: inserimento ordine e articoli collegati.
+Suggerimento: Mostra esempio con commit e rollback.
+
+72. 
+Domanda: Cos’è HTML? Acronimo?
+Risposta Breve: Linguaggio di markup; HyperText Markup Language.
+Risposta Completa: HTML (HyperText Markup Language) è il linguaggio standard per creare e strutturare pagine web tramite elementi come tag, attributi e contenuti.
+Suggerimento: Mostra esempio base di pagina HTML.
+
+73. 
+Domanda: Cos’è un ipertesto?
+Risposta Breve: Testo con collegamenti non lineari.
+Risposta Completa: L’ipertesto è un formato di testo elettronico organizzato in nodi o pagine collegati tramite link, permettendo una navigazione non lineare tra le informazioni.
+Suggerimento: Mostra esempio di link tra pagine web.
+
+74. 
+Domanda: Cos’è un div?
+Risposta Breve: Contenitore a livello di blocco.
+Risposta Completa: Il div è un elemento HTML usato come contenitore a livello di blocco per raggruppare altri elementi e applicare stili o layout.
+Suggerimento: Mostra esempio di div con CSS.
+
+75. 
+Domanda: Cosa sono H1,…, H6?
+Risposta Breve: Intestazioni HTML con gerarchia.
+Risposta Completa: H1–H6 sono tag HTML per definire titoli e sottotitoli con gerarchia decrescente, H1 è il più importante, H6 il meno.
+Suggerimento: Mostra esempio struttura pagina con H1-H3.
+
+76. 
+Domanda: Differenza tra div e span
+Risposta Breve: div blocco, span inline.
+Risposta Completa: div è un contenitore di livello blocco (occupando tutta la larghezza disponibile). span è inline, usato per stilizzare porzioni di testo senza interrompere il flusso.
+Suggerimento: Mostra esempio con CSS.
+
+77. 
+Domanda: Liste puntate vs numerate, come definirle?
+Risposta Breve: ul = puntata; ol = numerata.
+Risposta Completa: Liste puntate si definiscono con <ul> e <li>, numerate con <ol> e <li>. Entrambe contengono elementi della lista.
+Suggerimento: Mostra esempio HTML.
+
+78. 
+Domanda: Come definire un link?
+Risposta Breve: Con tag <a href="URL">.
+Risposta Completa: Un link HTML si crea con <a href="URL">Testo del link</a>, permettendo la navigazione verso altre pagine o risorse.
+Suggerimento: Mostra esempio con link interno ed esterno.
+
+79. 
+Domanda: Cos’è una form?
+Risposta Breve: Modulo per inviare dati.
+Risposta Completa: La form (<form>) è un contenitore HTML per raccogliere input dall’utente e inviarli al server tramite GET o POST.
+Suggerimento: Mostra esempio con input text e submit.
+
+80. 
+Domanda: Cos’è una query string?
+Risposta Breve: Parametri passati nell’URL.
+Risposta Completa: La query string è la parte di URL dopo il “?” contenente coppie chiave-valore, usata per passare dati al server.
+Suggerimento: Mostra esempio: www.esempio.com/page?name=Mario&age=30
+
+81. 
+Domanda: Cos’è HTTP?
+Risposta Breve: Protocollo client-server per il web.
+Risposta Completa: HTTP (HyperText Transfer Protocol) è un protocollo che definisce le regole di comunicazione tra client e server per il trasferimento di dati su web.
+Suggerimento: Mostra esempio di richiesta GET/POST.
+
+82. 
+Domanda: Qual è la differenza tra GET e POST?
+Risposta Breve: GET trasmette dati in chiaro e cacheable; POST no.
+Risposta Completa: GET invia dati tramite URL, visibili e cacheable; POST invia dati nel corpo della richiesta, non visibili e più sicuro per dati sensibili.
+Suggerimento: Mostra esempio form HTML con GET e POST.
+
+83. 
+Domanda: A cosa serve Bootstrap?
+Risposta Breve: Libreria front-end responsive.
+Risposta Completa: Bootstrap è una libreria front-end che facilita layout responsivi tramite griglia a 12 colonne, componenti UI pronti e design adattabile a dispositivi.
+Suggerimento: Mostra esempio di griglia e bottone.
+
+84. 
+Domanda: Cos’è JavaScript?
+Risposta Breve: Linguaggio di scripting lato client.
+Risposta Completa: JavaScript è un linguaggio interpretato, lato client, che permette di rendere dinamiche le pagine web e gestire eventi, manipolare DOM e comunicare con server.
+Suggerimento: Mostra esempio alert o manipolazione DOM.
+
+85. 
+Domanda: JavaScript è fortemente tipizzato?
+Risposta Breve: No, è debole/loosely typed.
+Risposta Completa: JavaScript non è fortemente tipizzato: variabili possono cambiare tipo dinamicamente.
+Suggerimento: Mostra esempio con var x = 5; x = "ciao";
+
+86. 
+Domanda: Come definire una variabile in JavaScript?
+Risposta Breve: var, let o const.
+Risposta Completa: var definisce variabile globale o function-scope; let definisce variabile block-scope; const definisce variabile immutabile.
+Suggerimento: Mostra esempio con let e const.
+
+87. 
+Domanda: Esempio di funzione JavaScript
+Risposta Breve: Function che mostra alert.
+Risposta Completa: function saluta() { alert("Ciao!"); } saluta();
+Suggerimento: Mostra chiamata funzione da HTML.
+
+88. 
+Domanda: console.log() a cosa serve?
+Risposta Breve: Stampa valori su console.
+Risposta Completa: console.log() stampa messaggi nella console del browser o ambiente Node.js, utile per debug e verifiche.
+Suggerimento: Mostra esempio con variabile.
+
+89. 
+Domanda: Cos’è una Servlet? Quando viene istanziata? A cosa serve il metodo service?
+Risposta Breve: Classe Java lato server per gestire richieste; service gestisce richiesta/risposta.
+Risposta Completa: Una Servlet è una classe Java lato server che risponde a richieste HTTP. Viene istanziata dal container al primo accesso. Il metodo service gestisce ogni richiesta chiamando doGet/doPost.
+Suggerimento: Mostra esempio base Servlet.
+
+90. 
+Domanda: Come viene mappata una Servlet?
+Risposta Breve: web.xml o annotation @WebServlet.
+Risposta Completa: La mappatura può avvenire dichiarando URL pattern nel web.xml o tramite annotation @WebServlet(urlPatterns="/path").
+Suggerimento: Mostra esempio di URL pattern.
+
+91. 
+Domanda: Cos’è Tomcat?
+Risposta Breve: Servlet container per Java web.
+Risposta Completa: Tomcat è un container Java che gestisce il ciclo di vita delle Servlet, le richieste HTTP e fornisce ambiente runtime per applicazioni web.
+Suggerimento: Mostra esempio deploy applicazione.
+
+92. 
+Domanda: Cos’è una JSP?
+Risposta Breve: Pagina web dinamica con Java.
+Risposta Completa: JSP (JavaServer Page) consente di scrivere pagine web dinamiche contenenti codice Java integrato nel markup HTML.
+Suggerimento: Mostra esempio con <% %>.
+
+93. 
+Domanda: Cos’è uno Scriptlet?
+Risposta Breve: Codice Java dentro JSP.
+Risposta Completa: Uno Scriptlet è codice Java inserito all’interno di <% %> in una JSP, eseguito dal server per generare contenuto dinamico.
+Suggerimento: Mostra esempio con variabile calcolata.
+
+94. 
+Domanda: Differenza tra attributo e parametro di richiesta
+Risposta Breve: Attributo lato server; parametro inviato dal client.
+Risposta Completa: Attributo è variabile memorizzata lato server nella request/session; parametro viene inviato dal client tramite form o URL.
+Suggerimento: Mostra esempio con request.getParameter() e setAttribute().
+
+95. 
+Domanda: Cos’è il RequestDispatcher?
+Risposta Breve: Componente per inoltrare richiesta a risorsa.
+Risposta Completa: RequestDispatcher consente di inoltrare la richiesta verso un’altra risorsa (Servlet o JSP) lato server, senza che il client debba fare una nuova richiesta.
+Suggerimento: Mostra esempio forward().
+
+96. 
+Domanda: Cos’è un pattern?
+Risposta Breve: Soluzione ricorrente a un problema di sviluppo.
+Risposta Completa: Un pattern è una soluzione standardizzata a un problema comune nello sviluppo software, riutilizzabile in diversi contesti.
+Suggerimento: Mostra esempio Singleton o MVC.
+
+97. 
+Domanda: Singleton?
+Risposta Breve: Classe con una sola istanza.
+Risposta Completa: Singleton garantisce che una classe abbia un’unica istanza globale, fornendo accesso controllato a questa istanza.
+Suggerimento: Mostra esempio getInstance().
+
+98. 
+Domanda: MVC (Acronimo)?
+Risposta Breve: Model, View, Controller.
+Risposta Completa: MVC è un pattern architetturale che divide l’applicazione in Model (dati), View (interfaccia) e Controller (logica di controllo).
+Suggerimento: Mostra schema con flusso dati.
+
+99. 
+Domanda: Cos’è Maven?
+Risposta Breve: Tool di build automation.
+Risposta Completa: Maven automatizza la compilazione, gestione dipendenze e standardizza la struttura dei progetti Java.
+Suggerimento: Mostra esempio pom.xml.
+
+100. 
+Domanda: Esercizi pratici
+Risposta Breve: Max in array, diagonale matrice, gerarchia, relazione Many-to-many, palindromo.
+Risposta Completa: Esempi: trovare massimo in array, stampare diagonale di matrice, rappresentare gerarchia con classi, creare relazione Many-to-many con tabelle, verificare se una stringa è palindroma con funzione.
+Suggerimento: Mostra snippet di codice Java per ogni esercizio.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

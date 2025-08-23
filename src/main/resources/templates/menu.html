@@ -2,12 +2,34 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Menu</title>
+<link rel="stylesheet" th:href="@{/menu.css}">
 </head>
 <body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Menu Quiz</h1>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/quiz}">
+                    <button class="btn-primary">Vai al quiz</button>
+                </form>
 
-	<h1>Menu</h1>
-	
-	<a th:href = "@{/quiz}">vai al quiz</a>
+                <form th:action="@{/quiz/java}">
+                    <button class="btn-disabled" disabled>Vai al quiz su Java</button>
+                </form>
+
+                <form th:action="@{/quiz/database}">
+                    <button class="btn-disabled" disabled>Vai al quiz sui Database</button>
+                </form>
+
+                <form th:action="@{/quiz/spring}">
+                    <button class="btn-disabled" disabled>Vai al quiz su Spring</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

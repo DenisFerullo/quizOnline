@@ -1,11 +1,13 @@
 package com.denis.app.controller;
 
+import com.denis.app.entity.Evaluation;
 import com.denis.app.entity.Question;
 import com.denis.app.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import java.util.ArrayList;
@@ -20,11 +22,11 @@ public class QuizController {
 	private final Random random = new Random();
 	
 	private final ArrayList<Question> history = new ArrayList();
+	
+	private final ArrayList<Evaluation> evaluationHistory = new ArrayList<Evaluation>();
 
 	@GetMapping("/quiz")
 	public String showQuestion(@RequestParam(value="quizIndex", required=false, defaultValue="0") int quizIndex,
-								@RequestParam(value="showHint", required=false, defaultValue="false") boolean hint,
-								@RequestParam(value="showAnswer", required=false, defaultValue="false") boolean answer,
 								Model model) {
 
 		// Configurazione iniziale per la pagina ----------------------------------------------------- //
@@ -63,11 +65,7 @@ public class QuizController {
 		model.addAttribute("quizIndex", quizIndex);
 		model.addAttribute("total" , questions.size());
 		
-		// mostra suggerimento se richiesto
-		model.addAttribute("showHint", hint);
 		
-		// mostra la risposta se richiesto
-		model.addAttribute("showAnswer", answer);
 		return "quiz";
 	}
 	
@@ -95,21 +93,55 @@ public class QuizController {
 	
 	
 
-	@GetMapping("/quiz/hint")
-	public String showHint(@RequestParam("quizIndex") int quizIndex) {
-		return "redirect:/quiz?quizIndex=" + quizIndex + "&showHint=true";
-	}
-
-	
-	
-	@GetMapping("/quiz/answer")
-	public String showAnswer(@RequestParam("quizIndex") int quizIndex) {
-		return "redirect:/quiz?quizIndex=" + quizIndex + "&showHint=true&showAnswer=true";
-	}
-
 	@GetMapping("/quiz/reset")
 	public String resetQuiz(SessionStatus status) {
 		status.setComplete();
 		return "redirect:/quiz";
 	}
+	
+	
+	
+	
+	
+	@PostMapping("/quiz/evaluate")
+	public String evaluateAnswer( @RequestParam int quizIndex, @RequestParam int rating, Model model) {
+
+	    // Qui salviamo la valutazione in una lista "history"
+	    // history può essere una struttura tipo: List<Evaluation>
+	    // dove Evaluation ha: quizIndex, domanda, voto
+	    evaluationHistory.add(new Evaluation(quizIndex, rating));
+
+	    // Torniamo alla stessa domanda o proseguiamo
+	    return "redirect:/quiz?quizIndex=" + (quizIndex + 1);
+	}
+	
+	
+	@GetMapping("/feedback")
+	public String feedback(Model model) {
+	    model.addAttribute("evaluations", evaluationHistory);
+
+	    double avg = evaluationHistory.stream()
+	                     .mapToInt(Evaluation::getRating)
+	                     .average()
+	                     .orElse(0);
+
+	    model.addAttribute("average", avg);
+
+	    return "feedback";
+	}
+
+	
+	
+	@GetMapping ( path = "/quiz/nuovo") 
+	public String nuovoQuiz () {
+		// Svuota le liste per ripartire da zero
+		history.clear();
+		evaluationHistory.clear();
+		
+		// Reindirizza alla prima domanda del quiz
+		return "redirect:/quiz?quizIndex=0";
+	}
+	
+	
+	
 }

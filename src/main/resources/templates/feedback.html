@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedback Quiz</title>
+
+<link rel="stylesheet" th:href="@{/feedback.css}">
+<link rel="stylesheet" th:href="@{/buttons.css}">
+
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">Feedback finale</div>
+            <div class="card-body">
+                <p>Hai risposto a <span th:text="${evaluations.size()}"></span> domande.</p>
+                <p>Media autovalutazioni: <strong th:text="${#numbers.formatDecimal(average, 1, 'POINT', 2, 'POINT')} + ' / 5'"></strong></p>
+
+                <table>
+                    <tr>
+                        <th>Domanda</th>
+                        <th>Valutazione</th>
+                    </tr>
+                    <tr th:each="eval : ${evaluations}">
+                        <td th:text="${eval.quizIndex}"></td>
+                        <td th:text="${eval.rating}"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <br><br>
+        
+        <div class = "azioni">
+        
+	        <form th:action="@{/menu}">
+	        	<button class = "return-menu" type = "submit">Torna al menu</button>
+	        </form>
+	         <form th:action="@{/quiz/nuovo}" method = "get">
+	         	<button class = "new-quiz" type = "submit"> Nuovo quiz</button>
+	         </form>
+    	</div>
+    	
+    </div>
+    
+    
+    
+</body>
+</html>
