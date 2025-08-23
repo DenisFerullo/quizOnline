@@ -7,17 +7,20 @@ import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 @Repository
 public class QuestionRepository {
 
-	private final List<Question> questions = new ArrayList<>();
+	private final ArrayList<Question> questions = new ArrayList<>();
 
+	
+	
 	public QuestionRepository() {
 		loadQuestionsFromFile("questions.txt");
 	}
-
+	
+	
+	
 	private void loadQuestionsFromFile(String fileName) {
 		try (InputStream is = getClass().getClassLoader().getResourceAsStream(fileName)) {
 			if (is == null) {
@@ -59,10 +62,14 @@ public class QuestionRepository {
 		}
 	}
 
-	public List<Question> findAll() {
+	
+	
+	public ArrayList<Question> findAll() {
 		return questions;
 	}
 
+	
+	
 	public Question findById(int id) {
 		return questions.stream().filter(q -> q.getId() == id).findFirst().orElse(null);
 	}
