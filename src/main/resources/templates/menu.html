@@ -22,8 +22,9 @@
 			</div>
 			
 			<div class="card-body">
+				
 				<form th:action="@{/quiz}">
-					<button id="start-quiz-btn" class="btn-primary" type="button">Vai
+					<button class="btn-primary" type="submit">Vai
 						al quiz</button>
 				</form>
 
@@ -43,22 +44,6 @@
 			</div>
 		</div>
 	</div>
-
-	<script>
-const startBtn = document.getElementById("start-quiz-btn");
-const logo = document.getElementById("menu-logo");
-
-startBtn.addEventListener("click", () => {
-    logo.classList.add("animate-transition");
-    document.getElementById("menu-card").classList.add("animate-fullscreen");
-
-    setTimeout(() => {
-        window.location.href = "/quiz";
-    }, 1000);
-});
-</script>
-
-
 
 </body>
 </html>

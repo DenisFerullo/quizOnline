@@ -10,6 +10,15 @@
 	--card-shadow: rgba(0, 0, 0, 0.5);
 }
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
+
+
 body {
 	/*     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
 	font-family: 'sans-serif';
@@ -62,7 +71,7 @@ body {
 	border: 1px solid rgba(255, 255, 255, 0.25); /* bordo vetro */
 	width: 100%;
 	max-width: 600px;
-	min-height: 350px;
+	min-height: 300px;
 	box-sizing: border-box;
 	color: var(--color-light);
 	display: flex;
@@ -71,15 +80,8 @@ body {
 	padding: 20px;
 	transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 	perspective: 1000px; /* necessario per il 3D flip */
-	border-radius: 16px; /* coerente con logo-front/back */
-	box-shadow: 0 10px 20px var(--card-shadow);
-	transition: transform 0.3s ease, box-shadow 0.3s ease;
-	/* usa proprietà uniformi */
-}
-
-.card:hover {
-	transform: translateY(-8px);
-	box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+	border-radius: 16px 16px 0 0; /* coerente con logo-front/back */
+	box-shadow: 0 12px 50px rgba(0, 0, 0, 0.5);
 }
 
 /* Header della card */
@@ -292,62 +294,152 @@ to {
 }
 
 }
+
+
+.show-buttons-arrow {
+    font-size: 2.5rem; /* grandezza freccia */
+    text-align: center;
+    color: var(--color-light);
+    cursor: pointer;
+    margin-top: 10px;
+    transition: transform 1s ease;
+
+    /* Ripetizione ogni 5 secondi */
+    animation: bounce 1s ease 0s 1 normal forwards;
+    animation-delay: 2s;
+}
+
+.show-buttons-arrow.rotated {
+    transform: rotate(540deg);
+}
+
+.bounce {
+	animation: bounce 1s ease 1;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(8px); }
+    60% { transform: translateY(4px); }
+}
+
+
+
+
+/* Contenitore generale dei bottoni */
 .button-area {
-	width: 100%;
-	max-width: 800px;
-	background-color: var(--color-light);
-	border-radius: 0 0 16px 16px;
-	box-shadow: 0 10px 20px var(--card-shadow);
-	padding: 15px 20px;
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
+    width: 100%;
+    max-width: 600px; /* coerente con la card */
+    background: linear-gradient(
+    to bottom, 
+   rgba(0,0,0,0.7), /* overlay scuro */
+        rgba(45,45,45,0.8)
+);
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,5);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    
+    /*Animazione per far emergere l'area */
+    transform: translateY(-100px); /* spostata verso il basso */
+    opacity: 1.0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: -1;
+    
 }
 
+/* Mostra area */
+.button-area.visible {
+    transform: translateY(-15px); /* posizione naturale */
+    opacity: 1;
+    box-shadow: 0 12px 20px rgba(0,0,0,0.6);
+    z-index: 10;
+}
+
+/* Quando button-area è visibile, overlay diventa trasparente */
+.button-area.visible .quiz-actions {
+    background: transparent;
+}
+
+* Overlay iniziale su quiz-actions */
+.button-area .quiz-actions {
+    justify-content: space-around;
+    background: rgba(0,0,0,0.5); /* overlay scuro iniziale */
+    border-radius: 12px;
+    padding: 10px;
+    transition: background 0.3s ease;
+}
+
+
+/* Final buttons chiaro, versione coerente */
 .final-buttons {
-	width: 100%;
-	max-width: 800px;
-	padding: 20px;
-	background: linear-gradient(135deg, #f7f7f7, #e0e5f1);
-	border-radius: 16px;
-	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
-	align-items: stretch;
+    width: 100%;
+    max-width: 600px; 
+    padding: 20px;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
 }
 
-/* Contenitore bottoni navigazione */
-.quiz-actions {
-	display: flex;
-	justify-content: space-between;
-	gap: 15px;
+/* Contenitori interni per bottoni */
+.button-area .quiz-actions,
+.button-area .quiz-end-actions {
+    width: 100%;
+    display: flex;
+    gap: 15px;
+}
+
+/* Bottoni di navigazione */
+.button-area .quiz-actions {
+    justify-content: space-around;
+    
+}
+
+.button-area .quiz-end-actions {
+    justify-content: center;
+}
+
+/* Stile uniforme dei bottoni */
+.button-area button {
+    flex: 1; /* si adatta allo spazio disponibile */
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    color: var(--color-light);
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button-area button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
 }
 
 .quiz-end-actions {
-	display: flex;
-	justify-content: center;
+	z-index: 10;
 }
 
-/* Media queries per smartphone */
-@media ( max-width : 768px) {
-	.card, .logo-container, .button-area {
-		max-width: 100%;
-	}
-	.card {
-		min-height: 250px;
-		padding: 18px;
-	}
-	.card-title {
-		font-size: 1.2em;
-	}
-	.card-header {
-		font-size: 1em;
-		flex-wrap: wrap;
-	}
-	.button-area {
-		flex-direction: column;
-		gap: 10px;
-		padding: 12px 15px;
-	}
+/* Media query per mobile */
+@media (max-width: 600px) {
+    .button-area, .final-buttons {
+        max-width: 100%;
+        flex-direction: column;
+        gap: 12px;
+        padding: 15px;
+    }
+    
+    .button-area .quiz-actions,
+    .button-area .quiz-end-actions {
+        flex-direction: column;
+    }
+    
+    .button-area button {
+        width: 100%;
+    }
 }

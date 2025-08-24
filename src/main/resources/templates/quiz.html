@@ -91,6 +91,10 @@
 							</div>
 						</form>
 					</div>
+					
+					
+					<!-- Freccia per mostrare button-area -->
+					<div class="show-buttons-arrow">&#x25BC;</div>
 				</div>
 			</div>
 
@@ -216,6 +220,21 @@ document.querySelectorAll('.rating-buttons input[type="radio"]').forEach(input =
 
 
 
+/*Animazione freccia per mostrare la "button-area" */
+const arrow = document.querySelector('.show-buttons-arrow');
+const buttonArea = document.querySelector('.button-area');
+
+arrow.addEventListener('click', () => {
+    buttonArea.classList.toggle('visible');
+    arrow.classList.toggle('rotated'); // aggiunge/rimuove rotazione
+});
+
+
+setInterval(() => {
+    arrow.classList.remove('bounce');
+    void arrow.offsetWidth; // forza reflow
+    arrow.classList.add('bounce');
+}, 5000);
 
 </script>
 

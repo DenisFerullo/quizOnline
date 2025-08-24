@@ -56,6 +56,8 @@
 	transition: all 0.3s ease;
 	box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 	user-select: none;
+	position: relative; 	/* */
+	overflow: visible;
 }
 
 /* Hover */
@@ -95,6 +97,9 @@ rating-buttons label:hover {
 /* effetto particle */
 .particle {
   position: absolute;
+  top: 50%;   /* parte dal centro del contenitore relativo */
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 8px;
   height: 8px;
   border-radius: 50%;
