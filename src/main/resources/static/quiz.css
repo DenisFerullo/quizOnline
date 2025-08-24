@@ -1,170 +1,250 @@
 @charset "UTF-8";
 
 :root {
-    --color-primary: #667eea;
-    --color-secondary: #764ba2;
-    --color-accent: #f6ad55;
-    --color-light: #f7fafc;
-    --color-dark: #2d2d2d;
-    --card-bg: #ffffff;
-    --card-shadow: rgba(0,0,0,0.3);
+	--color-primary: #667eea;
+	--color-secondary: #764ba2;
+	--color-accent: #f6ad55;
+	--color-light: #f7fafc;
+	--color-dark: #2d2d2d;
+	--card-bg: #ffffff;
+	--card-shadow: rgba(0, 0, 0, 0.5);
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
-    color: var(--color-light);
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+	/*     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+	font-family: 'sans-serif';
+	background: linear-gradient(to right, var(--color-primary),
+		var(--color-secondary));
+	background-repeat: no-repeat; /* evita ripetizioni */
+	background-size: cover; /* copre esattamente il contenitore */
+	background-attachment: fixed;
+	/* riduce aliasing sui bordi in alcuni browser */
+	-webkit-backface-visibility: hidden;
+	/* migliora il rendering sui WebKit (Safari/Chrome) */
+	-moz-backface-visibility: hidden; /* per Firefox */
+	backface-visibility: hidden;
+	transform: translateZ(0);
+	/* forza la GPU a renderizzare il layer, riduce sbavature */
+	color: var(--color-light);
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	min-height: 100vh;
 }
 
 .container {
-    display: flex;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
 }
 
 .inner-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 90vh;
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	max-width: 1200px;
+	padding: 20px;
+	box-sizing: border-box;
+	gap: 20px;
 }
 
 /* Card */
 .card {
-    background-color: var(--card-bg);
-    border-radius: 16px 16px 0 0;
-    box-shadow: 0 8px 20px var(--card-shadow);
-    width: 100%;
-    max-width: 800px;
-    min-height: 300px;
-    box-sizing: border-box;
-    color: var(--color-dark);
-    animation: fadeIn 0.4s ease-in-out;
-    transition: transform 0.3s, box-shadow 0.3s;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+	background-color: var(--card-bg);
+	width: 100%;
+	max-width: 600px;
+	min-height: 350px;
+	box-sizing: border-box;
+	color: var(--color-dark);
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	padding: 20px;
+	transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+	perspective: 1000px; /* necessario per il 3D flip */
+	border-radius: 16px; /* coerente con logo-front/back */
+	box-shadow: 0 10px 20px var(--card-shadow);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	/* usa proprietà uniformi */
 }
 
 .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.5);
+	transform: translateY(-8px);
+	box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
 }
 
 /* Card header */
 .card-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: bold;
-    font-size: 1.2em;
-    margin: 15px 15px 15px 15px;
-    color: var(--color-dark);
-    flex-wrap: wrap;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	font-weight: bold;
+	font-size: 1.2em;
+	margin: 15px 30px 15px 30px;
+	color: var(--color-dark);
+	flex-wrap: wrap;
 }
 
 /* Domanda */
 .card-title {
-    font-size: 1.4em;
-    font-weight: 600;
-    margin-bottom: 10px;
+	padding: 10px;
+	font-size: 1.4em;
+	font-weight: 600;
+	margin: 10px 0 10px 0;
 }
 
 .card-body {
-	display:flex;
-	flex-direction: row;
+	display: flex;
+	flex-direction: column;
 	gap: 20px;
 	border-top: 1px solid lightgrey;
+	padding-top: 20px;
 }
 
-/* Aree suggerimento e risposta */
-#hintArea, #answerArea {
-    background-color: #f1f3f6;
-    border-left: 5px solid var(--color-accent);
-    padding: 18px;
-    margin-bottom: 18px;
-    border-radius: 8px;
-    color: #2c2c2c;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.3s ease;
+/* ANIMAZIONE PER LA CARD : --------------------------------------------*/
+.logo-container {
+	perspective: 1000px; /* effetto 3D */
+	width: 100%;
+	max-width: 500px; /* stessa larghezza della card */
+	margin: 0 auto 20px;
+	cursor: pointer;
 }
 
-#hintArea.show, #answerArea.show {
-    max-height: 500px; /* o valore sufficiente al contenuto */
-    opacity: 1;
-    padding: 15px;
+.logo-card {
+	width: 100%;
+	height: 300px; /* regola in base all’immagine */
+	transform-style: preserve-3d;
+	transition: transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+	box-sizing: border-box;
 }
 
-/* Le singole aree */
-.answer-area {
-    margin-bottom: 10px;
+.logo-container.flipped .logo-card {
+	transform: rotateY(540deg) scale(1.2);
 }
 
+/* Fronte e retro */
+.logo-front, .logo-back {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
+	border-radius: 16px;
+	box-shadow: 0 8px 20px var(--card-shadow);
+	overflow: hidden;
+	top: 0;
+	left: 0;
+	box-sizing: border-box;
+}
 
+.logo-front img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
 
+.logo-back {
+	background: url("/immagini/logo-retro.png") center/cover no-repeat;
+	color: var(--color-dark);
+	transform: rotateY(540deg) rotateX(10deg) scale(1.0);
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	position: relative;
+}
 
+.logo-back::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, 0.7); /* bianco trasparente */
+	z-index: 0;
+}
 
-
-
+/* Contenuto sopra l’overlay */
+.logo-back .hint, .logo-back .answer {
+	position: relative;
+	z-index: 1;
+}
+/* FINE ANIMEAZIONE CARD -----------------------------------------------*/
 
 /* Animazioni generali */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+@
+keyframes fadeIn {from { opacity:0;
+	transform: translateY(20px);
 }
 
+to {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+}
 .button-area {
-    width: 100%;
-    max-width: 800px;
-    margin-top: -10px;
-    background-color: #e2dee0;
-    border-radius: 0 0 16px 16px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    box-sizing: border-box;
-    z-index: 1;
+	width: 100%;
+	max-width: 800px;
+	background-color: var(--color-light);
+	border-radius: 0 0 16px 16px;
+	box-shadow: 0 10px 20px var(--card-shadow);
+	padding: 15px 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.final-buttons {
+	width: 100%;
+	max-width: 800px;
+	padding: 20px;
+	background: linear-gradient(135deg, #f7f7f7, #e0e5f1);
+	border-radius: 16px;
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	align-items: stretch;
+}
+
+/* Contenitore bottoni navigazione */
+.quiz-actions {
+	display: flex;
+	justify-content: space-between;
+	gap: 15px;
+}
+
+.quiz-end-actions {
+	display: flex;
+	justify-content: center;
 }
 
 /* Media queries per smartphone */
-@media (max-width: 600px) {
-    .card {
-        min-height: 250px;
-        padding: 18px;
-    }
-
-    .card-title {
-        font-size: 1.2em;
-    }
-
-    .card-header {
-        font-size: 1em;
-        flex-direction: row;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .button-area {
-        flex-direction: column;
-        gap: 10px;
-        padding: 12px 15px;
-    }
-
-    .answer-area {
-        padding: 15px;
-    }
+@media ( max-width : 768px) {
+	.card, .logo-container, .button-area {
+		max-width: 100%;
+	}
+	.card {
+		min-height: 250px;
+		padding: 18px;
+	}
+	.card-title {
+		font-size: 1.2em;
+	}
+	.card-header {
+		font-size: 1em;
+		flex-wrap: wrap;
+	}
+	.button-area {
+		flex-direction: column;
+		gap: 10px;
+		padding: 12px 15px;
+	}
 }

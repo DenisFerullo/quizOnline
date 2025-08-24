@@ -7,29 +7,58 @@
 <link rel="stylesheet" th:href="@{/menu.css}">
 </head>
 <body>
-    <div class="container">
-        <div class="card">
-            <div class="card-header">
-                <h1>Menu Quiz</h1>
-            </div>
-            <div class="card-body">
-                <form th:action="@{/quiz}">
-                    <button class="btn-primary">Vai al quiz</button>
-                </form>
+	<div class="container">
 
-                <form th:action="@{/quiz/java}">
-                    <button class="btn-disabled" disabled>Vai al quiz su Java</button>
-                </form>
+		<div class="logo-container">
+			
+			<img id="menu-logo" class="logo" alt="sfondo quiz"
+				th:src="@{/immagini/quiz-sfondo.jpg}">
+		</div>
 
-                <form th:action="@{/quiz/database}">
-                    <button class="btn-disabled" disabled>Vai al quiz sui Database</button>
-                </form>
+		<div class="card" id="menu-card">
+			
+			<div class="card-header">
+				<h1>Menu Quiz</h1>
+			</div>
+			
+			<div class="card-body">
+				<form th:action="@{/quiz}">
+					<button id="start-quiz-btn" class="btn-primary" type="button">Vai
+						al quiz</button>
+				</form>
 
-                <form th:action="@{/quiz/spring}">
-                    <button class="btn-disabled" disabled>Vai al quiz su Spring</button>
-                </form>
-            </div>
-        </div>
-    </div>
+				<form th:action="@{/quiz/java}">
+					<button class="btn-disabled" disabled>Vai al quiz su Java</button>
+				</form>
+
+				<form th:action="@{/quiz/database}">
+					<button class="btn-disabled" disabled>Vai al quiz sui
+						Database</button>
+				</form>
+
+				<form th:action="@{/quiz/spring}">
+					<button class="btn-disabled" disabled>Vai al quiz su
+						Spring</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script>
+const startBtn = document.getElementById("start-quiz-btn");
+const logo = document.getElementById("menu-logo");
+
+startBtn.addEventListener("click", () => {
+    logo.classList.add("animate-transition");
+    document.getElementById("menu-card").classList.add("animate-fullscreen");
+
+    setTimeout(() => {
+        window.location.href = "/quiz";
+    }, 1000);
+});
+</script>
+
+
+
 </body>
 </html>

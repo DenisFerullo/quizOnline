@@ -1,0 +1,72 @@
+@charset "UTF-8";
+
+
+.logo-container {
+	perspective: 1000px; /* effetto 3D */
+	width: 100%;
+	max-width: 500px; /* stessa larghezza della card */
+	margin: 0 auto 20px;
+	cursor: pointer;
+}
+
+.logo-card {
+	position: relative;
+	width: 100%;
+	height: 300px; /* regola in base all’immagine */
+	transform-style: preserve-3d;
+	transition: transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+	box-sizing: border-box;
+}
+
+.logo-container.flipped .logo-card {
+	transform: rotateY(540deg) scale(1.2);
+}
+
+/* Fronte e retro */
+.logo-front, .logo-back {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
+	border-radius: 16px;
+	box-shadow: 0 8px 20px var(--card-shadow);
+	overflow: hidden;
+	top: 0; left: 0;
+	box-sizing: border-box;
+}
+
+.logo-front img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.logo-back {
+	background: url("/immagini/logo-retro.png") center/cover no-repeat;
+	color: var(--color-dark);
+	transform: rotateY(540deg) rotateX(10deg) scale(1.0);
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	position: relative;
+}
+
+
+.logo-back::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7); /* bianco trasparente */
+    z-index: 0;
+}
+
+/* Contenuto sopra l’overlay */
+.logo-back .hint,
+.logo-back .answer {
+    position: relative;
+    z-index: 1;
+}

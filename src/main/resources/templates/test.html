@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu</title>
+<link rel="stylesheet" th:href="@{/menu.css}">
+</head>
+<body>
+    <div class="container" id="menu-container">
+
+        <div class="logo-container">
+            <img id="menu-logo" class="logo" alt="sfondo quiz" th:src="@{/immagini/quiz-sfondo.jpg}">
+        </div>
+
+        <div class="card" id="menu-card">
+            <div class="card-header">
+                <h1>Menu Quiz</h1>
+            </div>
+
+            <div class="card-body">
+                <button id="start-quiz-btn" class="btn-primary" type="button">Vai al quiz</button>
+
+                <button class="btn-disabled" disabled>Quiz Java</button>
+                <button class="btn-disabled" disabled>Quiz Database</button>
+                <button class="btn-disabled" disabled>Quiz Spring</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const startBtn = document.getElementById("start-quiz-btn");
+        const logo = document.getElementById("menu-logo");
+        const card = document.getElementById("menu-card");
+        const container = document.getElementById("menu-container");
+
+        startBtn.addEventListener("click", () => {
+            // Zoom + rotazione logo
+            logo.classList.add("animate-transition");
+
+            // Card diventa fullscreen
+            card.classList.add("animate-fullscreen");
+
+            // Fade-out del resto della pagina
+            container.classList.add("fade-out");
+
+            // Redirect dopo animazione
+            setTimeout(() => {
+                window.location.href = "/quiz";
+            }, 1000); // durata animazione
+        });
+    </script>
+</body>
+</html>

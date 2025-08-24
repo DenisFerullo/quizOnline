@@ -13,110 +13,26 @@ button {
 	width: auto;
 }
 
-/* Hover generico */
-button:hover {
-	transform: translateY(-2px);
-	box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-}
-
-
-.answer-hint-btn {
-	display: flex;
-	justify-content: center;
-	gap: 30px;
-	border-left: 1px solid lightgrey;
-	border-right: 1px solid lightgrey;
-	padding: 5px 0;
-}
-
-/* Pulsante "Mostra soluzione" */
-.answer-btn {
-	font-size: 1.1em;
-	padding: 8px 15px;
-	border-radius: 10px;
-	transition: all 0.5s ease;
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-	background-color: #ff9800; /* arancione */
-	transform: scale(1.1);
-}
-
-.answer-btn:hover {
-	font-size: 1.1em;
-	padding: 8px 15px;
-	border-radius: 10px;
-	transition: all 0.5s ease;
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-	transform: scale(1.1);
-	background-color: #e68900;
-}
-
-/* Pulsante "Suggerimento" */
-.hint-btn {
-	font-size: 1.1em;
-	padding: 8px 15px;
-	border-radius: 10px;
-	transition: all 0.5s ease;
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-	transform: scale(1.1);
-	background-color: #17a2b8; /* azzurro */
-}
-
-.hint-btn:hover {
-	font-size: 1.1em;
-	padding: 8px 15px;
-	border-radius: 10px;
-	transition: all 0.5s ease;
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-	transform: scale(1.1);
-	background-color: #138496;
-}
-
-.prec-next-question {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
-	gap: 10px;
-}
-
-.prec, .next {
+.btn {
+	font-family: inherit;
 	font-size: 1em;
-	padding: 10px 20px;
-	border-radius: 10px;
-	width: 200px;
-	text-align: center;
-	color: white;
+	padding: 12px 20px;
+	border-radius: 12px;
+	border: none;
 	cursor: pointer;
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 	transition: all 0.3s ease;
+	box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+	color: #fff;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	justify-content: center;
 }
 
-/* Pulsante "Domanda precedente" */
-.prec {
-	background-color: #6c757d;
-}
-
-.prec:hover {
-	background-color: #5a6268;
-}
-
-/* Pulsante "Prossima domanda" */
-.next {
-	background-color: #28a745;
-}
-
-.next:hover {
-	background-color: #218838;
-}
-
-
-/* Media queries per smartphone */
-@media ( max-width : 600px) {
-	button {
-		width: 100%;
-		font-size: 0.95em;
-		padding: 12px 0;
-	}
+/* Hover e focus animati */
+.btn:hover {
+	transform: translateY(-2px) scale(1.05);
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .rate {
@@ -127,24 +43,45 @@ button:hover {
 	background-color: #218838;
 }
 
-.hint-btn, .answer-btn {
-	padding: 10px 18px;
-	background-color: var(--color-accent);
-	color: white;
-	border: none;
-	border-radius: 8px;
-	cursor: pointer;
-	transition: background 0.3s;
+/* Hover generico */
+button:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
-.hint-btn:hover, .answer-btn:hover {
-	background-color: #f18e2c;
+.prec-next-question {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	width: 100%;
+}
+
+.prec, .next {
+	font-size: 1em;
+	padding: 10px 20px;
+	border-radius: 10px;
+	text-align: center;
+	color: white;
+	cursor: pointer;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+	transition: all 0.3s ease;
+}
+
+/* Pulsante "Domanda precedente" */
+.prec {
+	background: linear-gradient(135deg, #6c757d, #495057);
+}
+
+/* Pulsante "Prossima domanda" */
+.next {
+	background: linear-gradient(135deg, #28a745, #218838);
 }
 
 .end {
-	background-color: red;
+	background: linear-gradient(135deg, #ff4b5c, #d9363e);
 }
-
 
 .return-menu {
 	width: 100%;
@@ -156,3 +93,13 @@ button:hover {
 	background-color: lightblue;
 }
 
+/* Mobile friendly */
+@media ( max-width : 600px) {
+	.quiz-actions {
+		flex-direction: column;
+	}
+	.btn {
+		width: 100%;
+		font-size: 0.95em;
+	}
+}
