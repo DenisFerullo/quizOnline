@@ -19,15 +19,25 @@
 			<div class="card">
 
 				<div class="card-header">
-					<span th:text="'Domanda n° ' + ${quizIndex} + ' : '"></span>
+					<!--  Numero domanda come etichetta -->
+					<span class="question-index" th:text="'Domanda n ' + ${quizIndex}"></span>
 
-					<h5 class="card-title" th:text="'- ' + ${question.question} + ' -'">Domanda
-						qui</h5>
+					<h3 class="card-title" id="question-text" th:text="${question.question}"></h3>
+
 				</div>
 
 
 
 				<div class="card-body">
+
+					<div class="hint" onclick="this.classList.toggle('revealed')">
+						<p>
+							<strong>Suggerimento:</strong> <span th:text="${question.hint}">Suggerimento
+								qui</span>
+						</p>
+					</div>
+
+
 
 					<div class="logo-container"
 						onclick="this.classList.toggle('flipped')">
@@ -40,14 +50,9 @@
 
 							<!-- Retro -->
 							<div class="logo-back">
-								
-								<div class="hint">
-									<p>
-										<strong>Suggerimento:</strong> <span
-											th:text="${question.hint}">Suggerimento qui</span>
-									</p>
-								</div>
-								
+
+
+
 								<div class="answer">
 
 									<p>
@@ -61,28 +66,29 @@
 
 
 					<div class="evaluation-area">
-						
+
 						<p>La mia risposta è stata :</p>
-						
-						<form th:action="@{/quiz/evaluate}" method="post" class="rating-form">
+
+						<form th:action="@{/quiz/evaluate}" method="post"
+							class="rating-form">
 							<input type="hidden" name="quizIndex" th:value="${quizIndex}" />
 
 							<div class="rating-buttons">
-					            <input type="radio" id="rate1" name="rating" value="1" required onchange="this.form.submit()">
-					            <label for="rate1">😞</label>
-					
-					            <input type="radio" id="rate2" name="rating" value="2" onchange="this.form.submit()">
-					            <label for="rate2">😕</label>
-					
-					            <input type="radio" id="rate3" name="rating" value="3" onchange="this.form.submit()">
-					            <label for="rate3">😐</label>
-					
-					            <input type="radio" id="rate4" name="rating" value="4" onchange="this.form.submit()">
-					            <label for="rate4">🙂</label>
-					
-					            <input type="radio" id="rate5" name="rating" value="5" onchange="this.form.submit()">
-					            <label for="rate5">😁</label>
-					        </div>
+								<input type="radio" id="rate1" name="rating" value="1" required> 
+								<label for="rate1">😞</label>
+
+								<input type="radio" id="rate2" name="rating" value="2"> 
+								<label for="rate2">😕</label>
+
+								<input type="radio" id="rate3" name="rating" value="3"> 
+								<label for="rate3">😐</label>
+
+								<input type="radio" id="rate4" name="rating" value="4"> 
+								<label for="rate4">🙂</label>
+
+								<input type="radio" id="rate5" name="rating" value="5"> 
+								<label for="rate5">😁</label>
+							</div>
 						</form>
 					</div>
 				</div>
@@ -90,33 +96,130 @@
 
 			<!--  AREA DEI BOTTONI CON AZIONI ------------------------------------------------------------------------------ -->
 			<div class="button-area final-buttons">
-				
-				<div class = "quiz-actions">
-		
-							<form th:action="@{/quiz/prev}" method="get" th:if="${quizIndex > 0}">
-								<input type="hidden" name="quizIndex" th:value="${quizIndex}" />
-								<button class="btn prec" type="submit">⬅ Domanda precedente</button>
-							</form>
-		
-							<form th:action="@{/quiz/next}" method="get" th:if="${quizIndex < total}">
-								<input type="hidden" name="quizIndex" th:value="${quizIndex}" />
-								<button class="btn next" type="submit">Skip domanda ➡</button>
-							</form>
+
+				<div class="quiz-actions">
+
+					<form th:action="@{/quiz/prev}" method="get"
+						th:if="${quizIndex > 0}">
+						<input type="hidden" name="quizIndex" th:value="${quizIndex}" />
+						<button class="btn prec" type="submit">⬅ Domanda
+							precedente</button>
+					</form>
+
+					<form th:action="@{/quiz/next}" method="get"
+						th:if="${quizIndex < total}">
+						<input type="hidden" name="quizIndex" th:value="${quizIndex}" />
+						<button class="btn next" type="submit">Skip domanda ➡</button>
+					</form>
 				</div>
 
 
 				<div class="quiz-end-actions">
 
 					<form th:action="@{/feedback}">
-						<button class="btn end">Concludi il quiz  e  Visualizza risultati</button>
+						<button class="btn end">Concludi il quiz e Visualizza
+							risultati</button>
 					</form>
 				</div>
 
 			</div>
 
 		</div>
-		
+
 	</div>
-	
+
+
+<script>
+const questionEl = document.getElementById("question-text");
+const fullText = questionEl.textContent.trim();
+questionEl.textContent = ""; // puliamo il testo
+
+let delay = 0;
+
+for (const char of fullText) {
+  const span = document.createElement("span");
+  span.textContent = char;
+  span.classList.add("typing-char");
+  span.style.animationDelay = `${delay}ms`;
+  questionEl.appendChild(span);
+
+  // Incremento casuale per un effetto più naturale
+  delay += (char === " ") ? 100 : 50 + Math.random() * 50;
+}
+
+
+/* Per generare le particelle al click ------------------------------ */
+  document.querySelectorAll('.rating-buttons input[type="radio"]').forEach(input => {
+  input.addEventListener('change', (e) => {
+    const label = e.target.nextElementSibling;
+
+    const rect = label.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    for (let i = 0; i < 15; i++) { // 15 particelle
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      
+      // colori casuali
+      particle.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
+      
+      // posizione iniziale
+      particle.style.left = `${centerX}px`;
+      particle.style.top = `${centerY}px`;
+
+      // direzione casuale
+      const angle = Math.random() * 2 * Math.PI;
+      const distance = 50 + Math.random() * 30;
+      particle.style.setProperty('--x', `${Math.cos(angle) * distance}px`);
+      particle.style.setProperty('--y', `${Math.sin(angle) * distance}px`);
+
+      document.body.appendChild(particle);
+
+      // rimuovi dopo l'animazione
+      particle.addEventListener('animationend', () => particle.remove());
+    }
+  });
+});
+
+
+
+
+/* Per ritardare l'invio di un nuova richiesta Get per la nuova card dopo l'autovalutazione */
+document.querySelectorAll('.rating-buttons input[type="radio"]').forEach(input => {
+  input.addEventListener('change', (e) => {
+    const label = e.target.nextElementSibling;
+
+    // 1. Particelle
+    const rect = label.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    for (let i = 0; i < 15; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
+      particle.style.left = `${centerX}px`;
+      particle.style.top = `${centerY}px`;
+      const angle = Math.random() * 2 * Math.PI;
+      const distance = 50 + Math.random() * 30;
+      particle.style.setProperty('--x', `${Math.cos(angle) * distance}px`);
+      particle.style.setProperty('--y', `${Math.sin(angle) * distance}px`);
+      document.body.appendChild(particle);
+      particle.addEventListener('animationend', () => particle.remove());
+    }
+
+    // 2. Invio del form con leggero delay
+    setTimeout(() => e.target.form.submit(), 300);
+  });
+});
+
+
+
+
+</script>
+
+
+
 </body>
 </html>

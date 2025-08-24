@@ -55,12 +55,16 @@ body {
 
 /* Card */
 .card {
-	background-color: var(--card-bg);
+	/* 	background-color: var(--card-bg); */
+	background: rgba(255, 0, 0, 0.3); /* bianco traslucido */
+	backdrop-filter: blur(15px) saturate(120%);
+	-webkit-backdrop-filter: blur(15px) saturate(120%);
+	border: 1px solid rgba(255, 255, 255, 0.25); /* bordo vetro */
 	width: 100%;
 	max-width: 600px;
 	min-height: 350px;
 	box-sizing: border-box;
-	color: var(--color-dark);
+	color: var(--color-light);
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -78,27 +82,74 @@ body {
 	box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
 }
 
-/* Card header */
+/* Header della card */
 .card-header {
+	position: relative;
+	padding: 20px 20px 10px 20px;
 	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
-	font-weight: bold;
-	font-size: 1.2em;
-	margin: 15px 30px 15px 30px;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+    min-height: 80px; /* altezza minima della header, evita che tutto “scivoli” */
+    box-sizing: border-box;
+    gap: 10px; /* piccolo spazio tra question-index e titolo */
+}
+
+/* Numero domanda in alto a destra come etichetta */
+.question-index {
+	position: absolute;
+	top: -10px;
+	left: -10px;
+	background: rgba(255, 255, 255, 0.8);
 	color: var(--color-dark);
-	flex-wrap: wrap;
+	font-size: 0.9em;
+	font-weight: bold;
+	padding: 5px 10px;
+	border-radius: 12px 0 12px 0; /* angoli tipo cartella */
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
-/* Domanda */
+/* Titolo della card */
 .card-title {
-	padding: 10px;
-	font-size: 1.4em;
+	font-size: 1.5em;
 	font-weight: 600;
-	margin: 10px 0 10px 0;
+	margin: 15px 0;
+	text-align: center;
+	line-height: 1.4em;
+	color: var(--color-light);
+	letter-spacing: 0.5px;
+	text-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+	
+	/* effetto macchina da scrivere */
+	white-space: normal; /*permette a parole intere di andare a capo*/
+	word-break: normal; /* evita spezzature nel mezzo della parola*/
+	overflow-wrap: break-word;
+	display: block;
+	max-width: 100%;
 }
 
+
+/* Animazione typing con JS */
+.typing-char {
+  display: inlinek;
+  opacity: 0;
+  animation: fadeInChar 0.05s forwards;
+}
+
+
+@keyframes fadeInChar {
+  to { opacity: 1; }
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink {
+  0%, 100% { border-color: transparent; }
+  50% { border-color: var(--color-light); }
+}
 .card-body {
 	display: flex;
 	flex-direction: column;
@@ -106,6 +157,60 @@ body {
 	border-top: 1px solid lightgrey;
 	padding-top: 20px;
 }
+
+/* SUGGERIMENTO ------------------------------------------------- */
+.hint {
+	position: relative;
+	background: rgba(255, 255, 0, 0.5); /* leggero sfondo neutro */
+	border-radius: 10px;
+	padding: 15px;
+	cursor: pointer;
+	overflow: hidden;
+	transition: all 0.5s ease;
+	margin: 15px 0px;
+	border-top: 1px solid lightgrey;
+	border-bottom: 1px solid lightgrey;
+	box-shadow: inset 0 0px 50px rgba(0, 0, 0, 0.5);
+	font-size: large;
+}
+
+/* Sovrapposizione che copre il suggerimento */
+.hint::before {
+	content: "Clicca per vedere il suggerimento";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 1); /* copertura scura */
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-style: italic;
+	text-align: center;
+	padding: 10px;
+	border-radius: 10px;
+	transition: opacity 0.5s ease;
+}
+
+/* Quando cliccato, sparisce l’overlay */
+.hint.revealed::before {
+	opacity: 0;
+	pointer-events: none; /* lascia cliccare il testo sottostante */
+}
+
+/* Effetto testo leggermente animato */
+.hint p {
+	opacity: 0.1;
+	transition: opacity 0.5s ease;
+}
+
+.hint.revealed p {
+	opacity: 1;
+}
+
+/*SUGGERIMENTO -------------------------------------------------- */
 
 /* ANIMAZIONE PER LA CARD : --------------------------------------------*/
 .logo-container {
@@ -171,21 +276,19 @@ body {
 }
 
 /* Contenuto sopra l’overlay */
-.logo-back .hint, .logo-back .answer {
+.logo-back, .logo-back .answer {
 	position: relative;
 	z-index: 1;
 }
 /* FINE ANIMEAZIONE CARD -----------------------------------------------*/
 
 /* Animazioni generali */
-@
-keyframes fadeIn {from { opacity:0;
-	transform: translateY(20px);
+@keyframes fadeIn {from { opacity:0;
+	
 }
 
 to {
 	opacity: 1;
-	transform: translateY(0);
 }
 
 }
