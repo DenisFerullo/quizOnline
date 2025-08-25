@@ -185,4 +185,5 @@ rating-buttons label:hover {
     .evaluation-area { font-size: 1em; height: auto; padding: 15px; }
     .show-buttons-arrow { font-size: 2rem; }
     .logo-container { max-width: 100%; height: 100%; }
+    .rating-buttons { max-width: 600px}
 }
