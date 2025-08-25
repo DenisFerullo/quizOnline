@@ -50,3 +50,9 @@ nav,
 section {
   display: block;
 }
+
+
+button, input, a, label {
+	outline: none;
+	-webkit-tap-hightlight-color: transparent;
+}
