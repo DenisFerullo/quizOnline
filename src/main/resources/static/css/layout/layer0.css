@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+/* ------------------------------------------------------
+			Base HTML, BODY e ".container"   
+	--------------------------------------------------- */
+	
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden; 								/* blocca lo scroll */
+}
+
+
+
+body {
+    background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+    background-repeat: no-repeat;
+    
+    background-size: cover;							/* il gradiente occupa tutto lo schermo */
+    background-attachment: fixed;					/* blocca lo sfondo rispetto alla finestra del browser */
+   
+   	/* Ottimizzazioni GPU per animazioni fluide */
+    -webkit-backface-visibility: hidden;			/* migliora le performance 3D e riduce aliasing o sfarfallii su alcuni browser */
+    -moz-backface-visibility: hidden;				/* 		// 																	*/
+    backface-visibility: hidden;					/* 		// 																	*/
+    transform: translateZ(0);						/* forza il rendering su GPU, creando un "layer composito" per migliorare fluidità e ridurre sfarfallii durante animazioni */
+    
+    color: var(--color-light);
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    
+    width: 100%;
+    min-height: 100vh;
+}
+
+
+.container {
+	width: 100%;
+	max-width: 1200px;
+	height: 100%;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	
+	padding: 20px;
+	box-sizing: border-box;
+	gap: 20px;
+	
+}
+
+/* OTTIMIZZAZIONE PICCOLI SCHERMI ------------------------------------ */
+
+@media (max-height: 700px) {
+    body {
+        font-size: 0.9rem; 							/* riduce il testo */
+    }
+}
+
+@media (max-width: 500px) {
+    body {
+        padding: var(--space-sm);					/* Riduce padding laterale su schermi stretti */
+    }
+}

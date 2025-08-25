@@ -1,0 +1,52 @@
+@charset "UTF-8";
+/* reset.css */
+
+/* Box sizing per tutti gli elementi  ------------------ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Rimuove lo stile predefinito dei link --------------- */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Rimuove bullets e padding dalle liste --------------- */
+ul, ol {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* Rimuove stile default dai bottoni/input ------------- */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+/* Immagini e media responsive ------------------------- */
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* HTML5 elements display fix per browser vecchi ------- */
+article,
+aside,
+footer,
+header,
+nav,
+section {
+  display: block;
+}

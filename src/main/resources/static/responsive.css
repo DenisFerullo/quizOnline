@@ -1,10 +1,5 @@
 @charset "UTF-8";
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden; /* blocca lo scroll */
-}
+
 
 .container { /* sostituisci con il tuo contenitore principale */
     display: flex;
@@ -33,9 +28,6 @@ html, body {
 
 /* Ottimizzazione per schermi piccoli */
 @media (max-height: 700px) {
-    body {
-        font-size: 14px; /* riduce testo */
-    }
     
     .card {
     padding: 10px;

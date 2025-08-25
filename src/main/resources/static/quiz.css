@@ -1,227 +1,5 @@
 @charset "UTF-8";
 
-:root {
-	--color-primary: #667eea;
-	--color-secondary: #764ba2;
-	--color-accent: #f6ad55;
-	--color-light: #f7fafc;
-	--color-dark: #2d2d2d;
-	--card-bg: #ffffff;
-	--card-shadow: rgba(0, 0, 0, 0.5);
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
-
-
-
-body {
-	/*     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
-	font-family: 'sans-serif';
-	background: linear-gradient(to right, var(--color-primary),
-		var(--color-secondary));
-	background-repeat: no-repeat; /* evita ripetizioni */
-	background-size: cover; /* copre esattamente il contenitore */
-	background-attachment: fixed;
-	/* riduce aliasing sui bordi in alcuni browser */
-	-webkit-backface-visibility: hidden;
-	/* migliora il rendering sui WebKit (Safari/Chrome) */
-	-moz-backface-visibility: hidden; /* per Firefox */
-	backface-visibility: hidden;
-	transform: translateZ(0);
-	/* forza la GPU a renderizzare il layer, riduce sbavature */
-	color: var(--color-light);
-	margin: 0;
-	padding: 0;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: center;
-	min-height: 100vh;
-}
-
-.container {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: flex-start;
-}
-
-.inner-container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	width: 100%;
-	max-width: 1200px;
-	padding: 20px;
-	box-sizing: border-box;
-	gap: 20px;
-}
-
-/* Card */
-.card {
-	/* 	background-color: var(--card-bg); */
-	background: rgba(255, 0, 0, 0.3); /* bianco traslucido */
-	backdrop-filter: blur(15px) saturate(120%);
-	-webkit-backdrop-filter: blur(15px) saturate(120%);
-	border: 1px solid rgba(255, 255, 255, 0.25); /* bordo vetro */
-	width: 100%;
-	max-width: 600px;
-	min-height: 300px;
-	box-sizing: border-box;
-	color: var(--color-light);
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	padding: 20px;
-	transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-	perspective: 1000px; /* necessario per il 3D flip */
-	border-radius: 16px 16px 0 0; /* coerente con logo-front/back */
-	box-shadow: 0 12px 50px rgba(0, 0, 0, 0.5);
-}
-
-/* Header della card */
-.card-header {
-	position: relative;
-	padding: 20px 20px 10px 20px;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	justify-content: flex-start;
-    min-height: 80px; /* altezza minima della header, evita che tutto “scivoli” */
-    box-sizing: border-box;
-    gap: 10px; /* piccolo spazio tra question-index e titolo */
-}
-
-/* Numero domanda in alto a destra come etichetta */
-.question-index {
-	position: absolute;
-	top: -10px;
-	left: -10px;
-	background: rgba(255, 255, 255, 0.8);
-	color: var(--color-dark);
-	font-size: 0.9em;
-	font-weight: bold;
-	padding: 5px 10px;
-	border-radius: 12px 0 12px 0; /* angoli tipo cartella */
-	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-}
-
-/* Titolo della card */
-.card-title {
-	font-size: 1.5em;
-	font-weight: 600;
-	margin: 15px 0;
-	text-align: center;
-	line-height: 1.4em;
-	color: var(--color-light);
-	letter-spacing: 0.5px;
-	text-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
-	
-	/* effetto macchina da scrivere */
-	white-space: normal; /*permette a parole intere di andare a capo*/
-	word-break: normal; /* evita spezzature nel mezzo della parola*/
-	overflow-wrap: break-word;
-	display: block;
-	max-width: 100%;
-}
-
-
-/* Animazione typing con JS */
-.typing-char {
-  display: inlinek;
-  opacity: 0;
-  animation: fadeInChar 0.05s forwards;
-}
-
-
-@keyframes fadeInChar {
-  to { opacity: 1; }
-}
-
-@keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
-}
-
-@keyframes blink {
-  0%, 100% { border-color: transparent; }
-  50% { border-color: var(--color-light); }
-}
-.card-body {
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
-	border-top: 1px solid lightgrey;
-	padding-top: 20px;
-}
-
-/* SUGGERIMENTO ------------------------------------------------- */
-.hint {
-	position: relative;
-	background: rgba(255, 255, 0, 0.5); /* leggero sfondo neutro */
-	border-radius: 10px;
-	padding: 15px;
-	cursor: pointer;
-	overflow: hidden;
-	transition: all 0.5s ease;
-	margin: 15px 0px;
-	border-top: 1px solid lightgrey;
-	border-bottom: 1px solid lightgrey;
-	box-shadow: inset 0 0px 50px rgba(0, 0, 0, 0.5);
-	font-size: large;
-}
-
-/* Sovrapposizione che copre il suggerimento */
-.hint::before {
-	content: "Clicca per vedere il suggerimento";
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, 1); /* copertura scura */
-	color: #fff;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-style: italic;
-	text-align: center;
-	padding: 10px;
-	border-radius: 10px;
-	transition: opacity 0.5s ease;
-}
-
-/* Quando cliccato, sparisce l’overlay */
-.hint.revealed::before {
-	opacity: 0;
-	pointer-events: none; /* lascia cliccare il testo sottostante */
-}
-
-/* Effetto testo leggermente animato */
-.hint p {
-	opacity: 0.1;
-	transition: opacity 0.5s ease;
-}
-
-.hint.revealed p {
-	opacity: 1;
-}
-
-/*SUGGERIMENTO -------------------------------------------------- */
-
-/* ANIMAZIONE PER LA CARD : --------------------------------------------*/
-.logo-container {
-	perspective: 1000px; /* effetto 3D */
-	width: 100%;
-	max-width: 500px; /* stessa larghezza della card */
-	margin: 0 auto 20px;
-	cursor: pointer;
-}
 
 .logo-card {
 	width: 100%;
@@ -296,83 +74,6 @@ to {
 }
 
 
-.show-buttons-arrow {
-    font-size: 2.5rem; /* grandezza freccia */
-    text-align: center;
-    color: var(--color-light);
-    cursor: pointer;
-    margin-top: 10px;
-    transition: transform 1s ease;
-
-    /* Ripetizione ogni 5 secondi */
-    animation: bounce 1s ease 0s 1 normal forwards;
-    animation-delay: 2s;
-}
-
-.show-buttons-arrow.rotated {
-    transform: rotate(540deg);
-}
-
-.bounce {
-	animation: bounce 1s ease 1;
-}
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(8px); }
-    60% { transform: translateY(4px); }
-}
-
-
-
-
-/* Contenitore generale dei bottoni */
-.button-area {
-    width: 100%;
-    max-width: 600px; /* coerente con la card */
-    background: linear-gradient(
-    to bottom, 
-   rgba(0,0,0,0.7), /* overlay scuro */
-        rgba(45,45,45,0.8)
-);
-    border-radius: 0 0 16px 16px;
-    box-shadow: 0 8px 20px rgba(0,0,0,5);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    
-    /*Animazione per far emergere l'area */
-    transform: translateY(-100px); /* spostata verso il basso */
-    opacity: 1.0;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    z-index: -1;
-    
-}
-
-/* Mostra area */
-.button-area.visible {
-    transform: translateY(-15px); /* posizione naturale */
-    opacity: 1;
-    box-shadow: 0 12px 20px rgba(0,0,0,0.6);
-    z-index: 10;
-}
-
-/* Quando button-area è visibile, overlay diventa trasparente */
-.button-area.visible .quiz-actions {
-    background: transparent;
-}
-
-* Overlay iniziale su quiz-actions */
-.button-area .quiz-actions {
-    justify-content: space-around;
-    background: rgba(0,0,0,0.5); /* overlay scuro iniziale */
-    border-radius: 12px;
-    padding: 10px;
-    transition: background 0.3s ease;
-}
-
-
 /* Final buttons chiaro, versione coerente */
 .final-buttons {
     width: 100%;
@@ -384,62 +85,27 @@ to {
     flex-direction: column;
     gap: 15px;
     align-items: stretch;
+    height: 20%;
 }
 
-/* Contenitori interni per bottoni */
-.button-area .quiz-actions,
-.button-area .quiz-end-actions {
-    width: 100%;
-    display: flex;
-    gap: 15px;
-}
 
-/* Bottoni di navigazione */
-.button-area .quiz-actions {
-    justify-content: space-around;
-    
-}
 
-.button-area .quiz-end-actions {
-    justify-content: center;
-}
-
-/* Stile uniforme dei bottoni */
-.button-area button {
-    flex: 1; /* si adatta allo spazio disponibile */
-    padding: 12px 20px;
-    border: none;
-    border-radius: 12px;
-    color: var(--color-light);
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.button-area button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-}
-
-.quiz-end-actions {
-	z-index: 10;
-}
 
 /* Media query per mobile */
 @media (max-width: 600px) {
-    .button-area, .final-buttons {
+    .final-buttons {
         max-width: 100%;
         flex-direction: column;
         gap: 12px;
         padding: 15px;
     }
     
-    .button-area .quiz-actions,
-    .button-area .quiz-end-actions {
-        flex-direction: column;
-    }
-    
-    .button-area button {
-        width: 100%;
-    }
 }
+
+
+
+
+
+
+
+

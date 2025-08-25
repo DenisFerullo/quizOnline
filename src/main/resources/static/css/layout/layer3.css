@@ -1,0 +1,188 @@
+@charset "UTF-8";
+
+/* ==================== CARD HEADER ==================== */
+/* question-index */
+.question-index {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--color-dark);
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 12px 0 12px 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* card-title ----------------------------------------------------- */
+.card-title {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin: 15px 0;
+    text-align: center;
+    line-height: 1.4em;
+    color: var(--color-light);
+    letter-spacing: 0.5px;
+    text-shadow: 0 5px 10px rgba(0,0,0,0.5);
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: normal;
+    display: block;
+    max-width: 100%;
+}
+
+/* Typing animation */
+.typing-char {
+    display: inline-block; 
+    opacity: 0;
+    animation: fadeInChar 0.03s forwards;
+    letter-spacing: 0.05em;
+}
+
+@keyframes fadeInChar {
+    to { opacity: 1; }
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink {
+    0%,100% { border-color: transparent; }
+    50% { border-color: var(--color-light); }
+}
+
+/* ==================== CARD BODY ==================== */
+
+/* Hint box */
+.hint {
+    position: relative;
+    background: rgba(255, 255, 0, 0.5);
+    border-radius: 10px;
+    padding: 15px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    margin: 15px 0;
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
+    font-size: 1em;
+    height: 20%;
+}
+
+/* Overlay del suggerimento */
+.hint::before {
+    content: "Clicca per vedere il suggerimento";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,1);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: italic;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    transition: opacity 0.5s ease;
+}
+
+.hint.revealed::before {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.hint p {
+    opacity: 0.1;
+    transition: opacity 0.5s ease;
+}
+
+.hint.revealed p {
+    opacity: 1;
+}
+
+/* Logo container (flippable) */
+.logo-container {
+    perspective: 1000px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto 20px;
+    cursor: pointer;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* ------------- RATING AREA ------------------------ */
+
+.rating-buttons {
+	display: flex;
+	width: 90%;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 15px;
+	flex-wrap: wrap;
+	margin: 0 auto;
+}
+
+/* Nascondiamo i radio veri e propri */
+.rating-buttons input[type="radio"] {
+	display: none;
+}
+
+/* Stile dei bottoncini */
+.rating-buttons label {
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	background: linear-gradient(145deg, #e2e8f0, #cbd5e1);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	font-size: 2em; /* grandezza emoji */
+	transition: all 0.3s ease;
+	box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+	user-select: none;
+	position: relative; 
+	top : -20px;	
+	overflow: visible;
+}
+
+/* Hover */
+rating-buttons label:hover {
+	transform: scale(1.2) rotate(-5deg);
+	box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Selezionato */
+.rating-buttons input[type="radio"]:checked+label {
+	transform: scale(1.3) rotate(0deg);
+	box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* Animazione click */
+.rating-buttons input[type="radio"]:checked+label:active {
+	transform: scale(1.2) translateY(2px);
+}
+
+/* ----------------------------------------------------- */
+
+/* ==================== MEDIA QUERY ==================== */
+@media (max-width: 600px) {
+    .card-title { font-size: 0.9em; }
+    .hint { font-size: 0.9em; height: auto; }
+    .evaluation-area { font-size: 1em; height: auto; padding: 15px; }
+    .show-buttons-arrow { font-size: 2rem; }
+    .logo-container { max-width: 100%; height: 100%; }
+}

@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+/* ==================== SHOW BUTTONS ARROW ==================== */
+.show-buttons-arrow {
+    font-size: 2.5rem;
+    text-align: center;
+    color: var(--color-light);
+    cursor: pointer;
+    margin-top: 10px;
+    transition: transform 0.6s ease, color 0.3s ease;
+    animation: bounceArrow 1s ease 0s 1 normal forwards;
+    animation-delay: 2s;
+}
+
+.show-buttons-arrow:hover {
+    color: var(--color-accent);
+    transform: translateY(-3px) scale(1.1);
+}
+
+.show-buttons-arrow.rotated {
+    transform: rotate(540deg);
+}
+
+/* Bounce animation */
+@keyframes bounceArrow {
+    0%,20%,50%,80%,100% { transform: translateY(0); }
+    40% { transform: translateY(8px); }
+    60% { transform: translateY(4px); }
+}
+
+/* ==================== TRANSIZIONI EXTRA ==================== */
+button.btn {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+}
+
+button.btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+/* ==================== MEDIA QUERY ==================== */
+@media (max-width: 600px) {
+    .show-buttons-arrow {
+        font-size: 2rem;
+        margin-top: 8px;
+    }
+    
+    button.btn {
+        font-size: 0.9rem;
+        padding: 10px 15px;
+    }
+}
+
+@media (max-width: 400px) {
+    .show-buttons-arrow {
+        font-size: 1.8rem;
+    }
+    
+    button.btn {
+        font-size: 0.8rem;
+        padding: 8px 12px;
+    }
+}
